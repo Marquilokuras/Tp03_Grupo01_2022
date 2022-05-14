@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+
+body{
+	background:url("/img/fondo.jpg");
+	background-size: 500% 500%;
+}
+
+.container{
+	padding:50px 200px 100px 100px;
+	border: 5px solid #000000;	
+}
+
+#encabezado{
+	font-size:50px;
+	color:aqua;
+	display: flex;
+}
+
+#bandeja{
+	font-size:30px;
+	color:lime;
+	display: flex;
+}
+
+.cuerpo{
+	font-size: 4vh;
+	color:silver;
+	display: flex;
+	border: 2px solid #000000;	
+}
+
+label{
+	font-size:25px;
+	color:yellow;
+	display: flex;
+}
+
+.pie{
+	font-size: 2vh;
+	color:white;
+	display: flex;
+}

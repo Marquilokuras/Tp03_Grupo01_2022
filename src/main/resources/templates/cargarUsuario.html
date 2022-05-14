@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+	<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css">
+</head>
+	
+<body>
+<div class="container">
+	<div th:insert="/layouts/header :: header"></div>
+		
+		<form th:objec="${usuario}" th:action="@{/guardarusuario}" method="post"> 
+			<div class="col-mb-3">
+			    <label for="validationServer01" class="form-label">Nombre</label>
+				<input type="text" class="form-control is-valid" id="validationServer01" placeholder="Ingrese Nombre Completo" required>
+			</div>
+			<div class="col-mb-3">
+				<label for="validationServer02" class="form-label">Apellido</label>
+			    <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Ingrese Apellido Completo" required>
+			</div> 
+			<div class="col-mb-3">
+				<label for="validationServer02" class="form-label">DNI</label>
+			    <input type="number" class="form-control is-valid" id="validationServer02" min="0" max="99999999" placeholder="Ingrese DNI" required>
+			</div> 
+			<div class="mb-3">
+			   	<label for="exampleInputEmail1" class="form-label">Email</label>
+			   	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese Email" aria-describedby="emailHelp">
+			</div>
+			<div class="mb-3">
+			   	<label for="exampleInputPassword1" class="form-label">Contraseña</label>
+			   	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese Contraseña">
+			</div>
+			<div class="mb-3 form-check">
+			   	<input type="checkbox" class="form-check-input" id="exampleCheck1">
+			   	<label class="form-check-label" for="exampleCheck1">Recordarme</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Guardar Usuario</button>
+		</form>
+		
+	</div>	
+</body>
+</html>
