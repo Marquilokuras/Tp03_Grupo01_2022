@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>TRABAJO PRÁCTICO N°3</title>
+	<link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	
+	<div class="container">
+		 <div th:insert="/layouts/header :: header"></div>
+		<div class="cuerpo">
+			<nav class="col-6 col-xl-2">Menu</nav>
+			<article class="col-6 col-xl-10">Cuerpo de la Página</article>
+		</div>
+		
+		<br>
+		<footer>Integrantes: Marcos Quinteros - Agustina Maraz - Emilia Valeriano - Emilio Sorucos</footer>
+	</div>
+</body>
+
+</html>
