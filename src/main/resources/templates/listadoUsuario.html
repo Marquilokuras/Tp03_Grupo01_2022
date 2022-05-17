@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Listado</title>
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
+	rel="stylesheet" type="text/css">
+<!--  <link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css"> -->
+</head>
+
+<body>
+	<div class="container">
+
+		<table class="table table-bordered border-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First</th>
+					<th scope="col">Last</th>
+					<th scope="col">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!--  <table>
+			<tr>
+				<th>NOMBRE</th>
+				<th>APELLIDO</th>
+				<th>EMAIL</th>
+			</tr>
+
+			<tr th:each="usu:${listaUsuario}">
+				<th th:text="${usu.nombre}"></th>
+				<th th:text="${usu.apellido}"></th>
+				<th th:text="${usu.email}"></th>
+			</tr>
+
+		</table> -->
+
+	</div>
+</body>
+
+</html>
