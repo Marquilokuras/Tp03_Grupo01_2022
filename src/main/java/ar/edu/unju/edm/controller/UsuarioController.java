@@ -2,11 +2,11 @@ package ar.edu.unju.edm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unju.edm.model.Usuario;
 import ar.edu.unju.edm.until.ListaUsuario;
 
@@ -31,5 +31,21 @@ public class UsuarioController {
 		lista.getListado().add(usuarioparaguardar); //el user se guarda en listado
 		System.out.println("Tamaño del Listado: " + lista.getListado().size());
 		return "redirect:/otroUsuario";
+	}
+	
+	@GetMapping("/listadoUsuarios")
+	public String GetListado(Model model) {
+		
+		//creacion de usuario
+		Usuario usuario1 = new Usuario();
+		
+		//agregar alumnos al listado
+		ListaUsuario nombre = new ListaUsuario(); 
+		nombre.getListado().add(usuario1);
+
+		
+		//enviar listado a la vista
+		model.addAttribute("listaUusario", nombre.getListado());
+		return "header";
 	}
 }
