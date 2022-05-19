@@ -1,5 +1,6 @@
 package ar.edu.unju.edm.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,18 @@ public class UsuarioController {
 	@PostMapping("/guardarusuario")
 	public String saveUser(@ModelAttribute ("usuario") Usuario usuarioparaguardar) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
 		lista.getListado().add(usuarioparaguardar); //el user se guarda en listado
+		
 		System.out.println("Tamaño del Listado: " + lista.getListado().size());
 		return "redirect:/otroUsuario";
 	}
+	
+	@GetMapping("/listadoUsuario")
+	
+	public ModelAndView showUser() {
+		ModelAndView vista = new ModelAndView("listadoUsuario");
+		
+		vista.addObject("listaUsuario", lista.getListado());
+		return vista;
+	}
+	
 }

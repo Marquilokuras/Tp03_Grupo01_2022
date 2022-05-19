@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Listado</title>
+<link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
+	rel="stylesheet" type="text/css">
+  <link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="container">
+
+		<table class="table table-bordered border-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido</th>
+					<th scope="col">Email</th>
+				</tr>
+			</thead>
+			<tbody class="table-secondary">
+				<tr th:if="${listaUsuario.empty}">
+					<td colspan="3">No hay usuarios cargados</td>
+				</tr>
+				<tr th:each="u : ${listaUsuario}">
+					<td th:text="${u.nombre}"></td>
+					<td th:text="${u.apellido}"></td>
+					<td th:text="${u.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+
+</html>
