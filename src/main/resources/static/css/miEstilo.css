@@ -1,33 +1,13 @@
 @charset "ISO-8859-1";
 
 body{
-	background:url("/img/fondo.jpg");
+	background:url("/img/nuevofondo2.jpg");
 	background-repeat: no-repeat;
 	background-size: 500% 500%;
 }
 
-.container{
-	padding:100px 200px 100px 100px;
-	border: 5px solid #000000;	
-}
-
-#encabezado{
-	font-size:50px;
-	color:aqua;
-	display: flex;
-}
-
-#bandeja{
-	font-size:30px;
-	color:lime;
-	display: flex;
-}
-
-.cuerpo{
-	font-size:50px;
-	color:red;
-	display: flex;
-	border: 5px solid #000000;	
+.navbar {
+	background-color: rgb(49, 47, 47);
 }
 
 label{
@@ -35,3 +15,24 @@ label{
 	color:yellow;
 	display: flex;
 }
+
+/* aviso y aside */
+
+
+
+/* aviso y aside */
+
+
+
+/* CURSOS */
+
+
+
+/* CURSOS */
+
+
+/* footer */
+
+
+
+/* footer */

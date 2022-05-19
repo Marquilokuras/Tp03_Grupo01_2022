@@ -37,19 +37,11 @@ public class UsuarioController {
 	
 	@GetMapping("/listadoUsuario")
 	
-	// opcion 1
 	public ModelAndView showUser() {
 		ModelAndView vista = new ModelAndView("listadoUsuario");
 		
 		vista.addObject("listaUsuario", lista.getListado());
 		return vista;
 	}
-	
-	//opcion 2
-	/*public String GetListado(Model model) {
-		model.addAttribute("listaUsuario", lista.getListado());
-		return "/listadoUsuario";
-	}*/
-	
 	
 }
