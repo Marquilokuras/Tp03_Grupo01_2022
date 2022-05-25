@@ -12,42 +12,43 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Usuario {
+public class Curso {
 	@NotEmpty //vacio string 
-	@Size (min=5, max=30, message="El nombre de contener entre 5 a 30 caracteres")
-	private String nombre;
+	@Size (min=5, max=30, message="El nombre del curso de contener entre 5 a 30 caracteres")
+	private String curso;
 	@NotEmpty //vacio string
-	private String apellido;
+	private String docente;
 	@NotEmpty //vacio string
 	private String email;
 	@NotEmpty //vacio string
 	private String contrasena;
-	private Boolean estado;
+	@NotNull
+	private int cantidadHoras;
 	@NotNull //para numeros
-	@Min(value=1000000,message="El Dni debe ser mayor que millon")
-	@Max(value=99999999,message="El Dni debe ser menor que 9999999")
-	private Long dni;
+	@Min(value=1000000,message="El ID debe ser mayor que millon")
+	@Max(value=99999999,message="El ID debe ser menor que 9999999")
+	private Long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
 	
-	public Usuario() {
+	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public String getNombre() {
-		return nombre;
+
+	public String getCurso() {
+		return curso;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getDocente() {
+		return docente;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setDocente(String docente) {
+		this.docente = docente;
 	}
 
 	public String getEmail() {
@@ -66,20 +67,20 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
-	public Boolean getEstado() {
-		return estado;
+	public int getCantidadHoras() {
+		return cantidadHoras;
 	}
 
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
+	public void setCantidadHoras(int cantidadHoras) {
+		this.cantidadHoras = cantidadHoras;
 	}
 
-	public Long getDni() {
-		return dni;
+	public Long getId() {
+		return id;
 	}
 
-	public void setDni(Long dni) {
-		this.dni = dni;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public LocalDate getFechaNacimiento() {
@@ -89,7 +90,6 @@ public class Usuario {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
-	
-	
+
 }
+	

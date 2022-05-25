@@ -11,13 +11,16 @@
 
 <body>
 	<div class="container">
-
+		<div th:insert="/layouts/header :: header"></div>
+		<br>
 		<table class="table table-bordered border-primary">
 			<thead class="table-dark">
 				<tr>
 					<th scope="col">Nombre</th>
 					<th scope="col">Apellido</th>
 					<th scope="col">Email</th>
+					<th scope="col">DNI</th>
+					<th scope="col">Fecha de Nacimiento</th>
 					<th scope="col">Edicion</th> 
 				</tr>
 			</thead>
@@ -29,6 +32,8 @@
 					<td th:text="${u.nombre}"></td>
 					<td th:text="${u.apellido}"></td>
 					<td th:text="${u.email}"></td>
+					<td th:text="${u.dni}"></td>
+					<td th:text="${u.fechaNacimiento}"></td>
 					<td><a class="btn btn-warning" th:href="@{'/editarUsuario/'+ ${u.dni}}">Editar</a><a class="btn btn-danger" th:href="@{'/eliminarUsuario/'+ ${u.dni}}">Eliminar</a></td>
 				</tr>
 			</tbody>
