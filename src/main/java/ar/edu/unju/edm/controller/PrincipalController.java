@@ -9,7 +9,7 @@ public class PrincipalController {
 	@GetMapping({"/","/index","/home"})
 	public String getIndex(){
 		
-		return "index";
+		return "/index";
 	}
 	
 }
