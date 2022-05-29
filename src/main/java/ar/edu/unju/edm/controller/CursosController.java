@@ -40,7 +40,7 @@ public class CursosController {
 		MARCOS.info("Ingresando al metodo guardar Usuario: "+ cursoparaguardar.getFechaNacimiento() );
 		if(resultado.hasErrors()) {
 			MARCOS.fatal("Error de validacion");
-			model.addAttribute("usuario",cursoparaguardar);
+			model.addAttribute("curso",cursoparaguardar);
 			return "cargarCursos";
 		}
 		lista.getListado().add(cursoparaguardar); //el user se guarda en listado
