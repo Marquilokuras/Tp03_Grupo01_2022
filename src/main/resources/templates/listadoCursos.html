@@ -32,12 +32,53 @@
 					<td th:text="${u.email}"></td>
 					<td th:text="${u.cantidadHoras}"></td>
 					<td th:text="${u.id}"></td>
-					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.id}}">Editar</a><a class="btn btn-danger" th:href="@{'/eliminarCursos/'+ ${u.id}}">Eliminar</a></td>
-				</tr>
+					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.id}}">Editar</a>
+					<a class="btn btn-danger" 
+						th:onclick="'javascript:confirmarEliminar(\''+${u.id}+'\');'"	
+						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
 			</tbody>
 		</table>
-
 	</div>
-</body>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Eliminar Curso</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>¿Quiere eliminar el Curso?</h3>
+        <br>
+        <input type="text" id="identificadorDeUsuario" class="form-control"></input>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+        <button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+	 type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"
+	 ></script>
+<script th:src="@{/webjars/bootstrap/5.0.0/js/bootstrap.min.js}"
+	 type="text/javascript" src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"
+	 ></script>
+<script type="text/javascript">
+	function confirmarEliminar(id){
+		$('#modalEliminar').modal('show');
+		$("#identificadorDeCurso").val(id);
+	}
+	
+	function eliminarCurso(){
+		var id=$("#identificadorDeCurso").val();
+		window.location="/eliminarCurso/"+ id;
+	} fl
+	
+</script>
 </html>
