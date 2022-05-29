@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.model.Usuario;
+import ar.edu.unju.edm.service.IUsuarioService;
 import ar.edu.unju.edm.until.ListaUsuario;
 
 @Controller
@@ -23,7 +24,7 @@ public class UsuarioController {
 	Usuario nuevoUsuario;
 	
 	@Autowired
-	ListaUsuario lista;
+	IUsuarioService serviceUsuario;
 	
 	@GetMapping("/otroUsuario")//entra
 	public ModelAndView addUser() {
@@ -42,8 +43,12 @@ public class UsuarioController {
 			model.addAttribute("usuario",usuarioparaguardar);
 			return "cargarUsuario";
 		}
-		lista.getListado().add(usuarioparaguardar); //el user se guarda en listado
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
+		
+		try { //controla si algo se ejecuta bien, ponelo a algo q pueda fallar
+			serviceUsuario.guardarUsuario(usuarioparaguardar);
+		}catch(Exception error){//si no sale
+			MARCOS.error("No se pudo guardar el usuario");
+		}
 		return "redirect:/otroUsuario";
 	}
 	
@@ -51,10 +56,22 @@ public class UsuarioController {
 	public ModelAndView showUser() {
 		ModelAndView vista = new ModelAndView("listadoUsuario");
 		
-		vista.addObject("listaUsuario", lista.getListado());
+		vista.addObject("listaUsuario",serviceUsuario.mostrarUsuarios());
 		return vista;
 	}
 	
+	@GetMapping("/eliminarUsuario/{dni}")
+	public String deleteUser(@PathVariable(name="dni")Long dni) {
+		try {
+			serviceUsuario.eliminarUsuario(dni);
+		}catch(Exception error){
+			MARCOS.error("No se pudo eliminar el usuario");
+		}
+			
+		return "redirect:/listadoUsuario";
+	}
+	
+	/*
 	@GetMapping("/editarUsuario/{dni}")
 	public ModelAndView editUser(@PathVariable(name="dni")Long dni) {
 		Usuario usuarioEncontrado = new Usuario();
@@ -89,21 +106,7 @@ public class UsuarioController {
 		return "redirect:/listadoUsuario";
 	}
 	
-	@GetMapping("/eliminarUsuario/{dni}")
-	public ModelAndView deleteUser(@PathVariable(name="dni")Long dni) {
-		Usuario usuarioEncontrado = new Usuario();
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getDni().equals(dni)) {
-				usuarioEncontrado = lista.getListado().remove(i);
-			}
-		};
-		MARCOS.fatal("Error de entrada"+ usuarioEncontrado.getDni());
-		ModelAndView encontrado = new ModelAndView("cargarUsuario");
-		
-		encontrado.addObject("usuario", usuarioEncontrado);
-		encontrado.addObject("band", "true");
-		return encontrado;
-	}
+	
 	
 	@PostMapping("/sacarUsuario")//se recibe
 	public String sacarUser(@Valid  @ModelAttribute ("usuario") Usuario usuarioparasacar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
@@ -122,4 +125,4 @@ public class UsuarioController {
 		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
 		return "redirect:/listadoUsuario";
 	}
-}
+¨*/}
