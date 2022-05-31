@@ -11,71 +11,77 @@
 
 <body>
 	<div class="container">
-	<div th:insert="/layouts/header :: header"></div>
+		<div th:insert="/layouts/header :: header"></div>
+		<br>
 		<table class="table table-bordered border-primary">
 			<thead class="table-dark">
 				<tr>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido</th>
+					<th scope="col">Cursos</th>
+					<th scope="col">Docente</th>
 					<th scope="col">Email</th>
-					<th scope="col">DNI</th>
-					<th scope="col">Fecha de Nacimiento</th>
-					<th scope="col">Edicion</th>
+					<th scope="col">Cantidad de Horas</th>
+					<th scope="col">ID</th>
+					<th scope="col">Edicion</th> 
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
-				<tr th:if="${listaUsuario.empty}">
+				<tr th:if="${listaCursos.empty}">
 					<td colspan="6">No hay usuarios cargados</td>
 				</tr>
-				<tr th:each="u : ${listaUsuario}">
-					<td th:text="${u.nombre}"></td>
-					<td th:text="${u.apellido}"></td>
+				<tr th:each="u : ${listaCursos}">
+					<td th:text="${u.curso}"></td>
+					<td th:text="${u.docente}"></td>
 					<td th:text="${u.email}"></td>
-					<td th:text="${u.dni}"></td>
-					<td th:text="${u.fechaNacimiento}"></td>
-					<td><a class="btn btn-warning" th:href="@{'/editarUsuario/'+${u.dni}}">Editar</a>
-					<a class="btn btn-danger"
-					    th:onclick="'javascript:confirmarEliminar(\''+${u.dni}+'\');'"
-					    >Eliminar</a></td> <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+					<td th:text="${u.cantidadHoras}"></td>
+					<td th:text="${u.id}"></td>
+					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.id}}">Editar</a>
+					<a class="btn btn-danger" 
+						th:onclick="'javascript:confirmarEliminar(\''+${u.id}+'\');'"	
+						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
-
+</body>
 <!-- Modal -->
 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+        <h2 class="modal-title" id="exampleModalLabel">Eliminar Curso</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h3>¿Quiere eliminar el Usuario?</h3>
+        <h3>¿Quiere eliminar el Curso?</h3>
         <br>
-        <input type="text" id="identificadorDeUsuario" class="form-control"></input>
+        <input type="text" id="identificadorDeCurso" class="form-control"></input>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Eliminar</button>
+        <button type="button" class="btn btn-primary" th:onclick="eliminarCurso()">Eliminar</button>
       </div>
     </div>
   </div>
 </div>
+
 </body>
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
-	type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	 type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"
+	 ></script>
 <script th:src="@{/webjars/bootstrap/5.0.0/js/bootstrap.min.js}"
-	type="text/javascript" src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+	 type="text/javascript" src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"
+	 ></script>
 <script type="text/javascript">
-	function confirmarEliminar(dni){
+	function confirmarEliminar(id){
 		$('#modalEliminar').modal('show');
-		$("#identificadorDeUsuario").val(dni);
+		$("#identificadorDeCurso").val(id);
 	}
-	function eliminarUsuario(){
-		var id=$("#identificadorDeUsuario").val();
-		window.location="/eliminarUsuario/"+ id;
+
+	function eliminarCurso(){
+		var id=$("#identificadorDeCurso").val();
+		window.location="/eliminarCurso/"+ id;
 	}
+
 </script>
-</html>
+</html> 
