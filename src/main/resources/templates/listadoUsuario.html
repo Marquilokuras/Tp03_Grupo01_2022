@@ -11,7 +11,8 @@
 
 <body>
 	<div class="container">
-	<div th:insert="/layouts/header :: header"></div>
+		<div th:insert="/layouts/header :: header"></div>
+		<br>
 		<table class="table table-bordered border-primary">
 			<thead class="table-dark">
 				<tr>
@@ -20,7 +21,7 @@
 					<th scope="col">Email</th>
 					<th scope="col">DNI</th>
 					<th scope="col">Fecha de Nacimiento</th>
-					<th scope="col">Edicion</th>
+					<th scope="col">Edicion</th> 
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
@@ -40,7 +41,6 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
 
 <!-- Modal -->
@@ -63,6 +63,7 @@
     </div>
   </div>
 </div>
+  
 </body>
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 	type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
@@ -73,9 +74,11 @@
 		$('#modalEliminar').modal('show');
 		$("#identificadorDeUsuario").val(dni);
 	}
+
 	function eliminarUsuario(){
 		var id=$("#identificadorDeUsuario").val();
 		window.location="/eliminarUsuario/"+ id;
 	}
+
 </script>
 </html>

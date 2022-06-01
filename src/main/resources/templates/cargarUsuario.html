@@ -12,36 +12,36 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
-		<form th:object="${usuario}" th:action="${band}? @{modificarUsuario} : @{/guardarusuario}"
-			method="post">
-			<div class="mb-3">
-				<label for="nombre" class="form-label">Nombre</label> <input
-					type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre completo" required>
-				<label for="apellido" class="form-label">Apellido</label> <input
-					type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese apellido" required> <label
-					for="exampleInputEmail1" class="form-label">Email</label> <input
-					type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" th:field="*{email}" placeholder="Ingrese email: ej@correo.com" required>
+      <form th:object="${usuario}" th:action="${band}? @{modificarUsuario} : @{/guardarusuario}"
+        method="post">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label> <input
+            type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre completo">
+          <label for="apellido" class="form-label">Apellido</label> <input
+            type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese apellido"> <label
+            for="exampleInputEmail1" class="form-label">Email</label> <input
+            type="email" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" th:field="*{email}" placeholder="Ingrese email: ej@correo.com">
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Contraseña</label>
 				<input type="password" class="form-control"
 					id="exampleInputPassword1" th:field="*{contrasena}" placeholder="Ingrese contraseña">
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></div>
-			</div>
-			<div class="mb-3">
-				<label for="dni" class="form-label">DNI</label>
-				<input type="number" class="form-control"
-					id="dni" th:field="*{dni}" placeholder="Ingrese DNI">
-				<div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-			</div>
-			
-			<div class="mb-3">
-				<label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-				<input type="date" class="form-control"
-					id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="Ingrese su fecha de nacimiento">
-					<div class="alert alert-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
-			</div>
+        </div>
+        <div class="mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input type="number" class="form-control"
+            id="dni" th:field="*{dni}" placeholder="Ingrese DNI">
+          <div class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+          <input type="date" class="form-control"
+            id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="Ingrese su fecha de nacimiento">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+        </div>
 	
 			<button type="submit" class="btn btn-primary" th:value="${bandera}? 'modificar' : 'registrarse' ">Registrarse</button>
 		</form>

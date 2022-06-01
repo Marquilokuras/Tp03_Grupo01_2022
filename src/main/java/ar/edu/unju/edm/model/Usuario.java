@@ -1,13 +1,14 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -64,6 +65,30 @@ public class Usuario {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	public Boolean getEstado() {
