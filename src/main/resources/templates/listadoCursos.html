@@ -18,13 +18,15 @@
 				<tr>
 					<th scope="col">Cursos</th>
 					<th scope="col">Docente</th>
+					<th scope="col">Email</th>
 					<th scope="col">Cantidad de Horas</th>
+					<th scope="col">ID</th>
 					<th scope="col">Edicion</th> 
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
-				<tr th:if="${listaUsuario.empty}">
-					<td colspan="3">No hay usuarios cargados</td>
+				<tr th:if="${listaCursos.empty}">
+					<td colspan="6">No hay usuarios cargados</td>
 				</tr>
 				<tr th:each="u : ${listaCursos}">
 					<td th:text="${u.curso}"></td>
@@ -36,11 +38,12 @@
 					<a class="btn btn-danger" 
 						th:onclick="'javascript:confirmarEliminar(\''+${u.id}+'\');'"	
 						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
+				</tr>
 			</tbody>
 		</table>
+
 	</div>
-
-
+</body>
 <!-- Modal -->
 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -52,11 +55,11 @@
       <div class="modal-body">
         <h3>¿Quiere eliminar el Curso?</h3>
         <br>
-        <input type="text" id="identificadorDeUsuario" class="form-control"></input>
+        <input type="text" id="identificadorDeCurso" class="form-control"></input>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Eliminar</button>
+        <button type="button" class="btn btn-primary" th:onclick="eliminarCurso()">Eliminar</button>
       </div>
     </div>
   </div>
@@ -74,11 +77,11 @@
 		$('#modalEliminar').modal('show');
 		$("#identificadorDeCurso").val(id);
 	}
-	
+
 	function eliminarCurso(){
 		var id=$("#identificadorDeCurso").val();
 		window.location="/eliminarCurso/"+ id;
-	} fl
-	
+	}fi
+
 </script>
-</html>
+</html> 

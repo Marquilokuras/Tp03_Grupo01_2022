@@ -28,8 +28,6 @@
 				<input type="password" class="form-control"
 					id="exampleInputPassword1" th:field="*{contrasena}" placeholder="Ingrese contraseña">
 				<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></div>
-			</div>
-			<div class="mb-3">
 				<label for="id" class="form-label">ID</label>
 				<input type="number" class="form-control"
 					id="id" th:field="*{id}" placeholder="Ingrese ID">
@@ -39,7 +37,7 @@
 				<label for="fechanacimiento" class="form-label">Fecha de Inicio</label>
 				<input type="date" class="form-control"	id="fechanacimiento" th:field="*{fechaNacimiento}" placeholder="Ingrese Fecha de Inicio">
 			</div>
-			
+
 			<button type="submit" class="btn btn-primary" th:value="${band}? 'modificar' : 'registrar' ">Registrar</button>
 		</form>
 	</div>

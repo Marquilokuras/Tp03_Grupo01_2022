@@ -1,13 +1,11 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +28,7 @@ public class Curso {
 	private Long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
-	
+
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
@@ -90,6 +88,4 @@ public class Curso {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
 }
-	

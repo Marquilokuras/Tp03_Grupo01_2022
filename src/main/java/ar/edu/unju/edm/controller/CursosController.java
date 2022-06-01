@@ -18,44 +18,44 @@ import ar.edu.unju.edm.until.ListaCursos;
 
 @Controller
 public class CursosController {
-	private static final Log MARCOS=LogFactory.getLog(CursosController.class); //.getLog(UsuarioController.class);//constante con mayuscula 
-	
+	private static final Log EMILIO=LogFactory.getLog(CursosController.class); //.getLog(UsuarioController.class);//constante con mayuscula 
+
 	@Autowired
 	Curso nuevoCurso;
 	
 	@Autowired
 	ListaCursos lista;
-	
+
 	@GetMapping("/otroCursos")//entra
-	public ModelAndView addUser() {
+	public ModelAndView addCurso() {
 		ModelAndView vista = new ModelAndView("cargarCurso");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("curso", nuevoCurso);
 		vista.addObject("band", "false");
 		return vista;
 	}
-	
+
 	@PostMapping("/guardarCursos")//se recibe
-	public String saveUser(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Usuario: "+ cursoparaguardar.getFechaNacimiento() );
+	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
+		EMILIO.info("Ingresando al metodo guardar Curso: "+ cursoparaguardar.getFechaNacimiento() );
 		if(resultado.hasErrors()) {
-			MARCOS.fatal("Error de validacion");
+			EMILIO.fatal("Error de validacion");
 			model.addAttribute("curso",cursoparaguardar);
-			return "cargarCursos";
+			return "cargarCurso";
 		}
 		lista.getListado().add(cursoparaguardar); //el user se guarda en listado
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
+		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
 		return "redirect:/otroCursos";
 	}
-	
+
 	@GetMapping("/listadoCursos")
 	public ModelAndView showCursos() {
 		ModelAndView vista = new ModelAndView("listadoCursos");
-		
+
 		vista.addObject("listaCursos", lista.getListado());
 		return vista;
 	}
-	
+
 	@GetMapping("/editarCursos/{id}")
 	public ModelAndView editCurso(@PathVariable(name="id")Long id) {
 		Curso cursoEncontrado = new Curso();
@@ -64,19 +64,19 @@ public class CursosController {
 				cursoEncontrado = lista.getListado().get(i);
 			}
 		};
-		MARCOS.fatal("Error de entrada"+ cursoEncontrado.getId());
+		EMILIO.fatal("Error de entrada"+ cursoEncontrado.getId());
 		ModelAndView encontrado = new ModelAndView("cargarCurso");
-		
+
 		encontrado.addObject("curso", cursoEncontrado);
 		encontrado.addObject("band", "true");
 		return encontrado;
 	}
-	
+
 	@PostMapping("/modificarCurso")//se recibe
 	public String modCurso(@Valid  @ModelAttribute ("curso") Curso cursosparamodificar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursosparamodificar.getFechaNacimiento() );
+		EMILIO.info("Ingresando al metodo guardar Curso: "+ cursosparamodificar.getFechaNacimiento() );
 		if(resultado.hasErrors()) {
-			MARCOS.fatal("Error de validacion");
+			EMILIO.fatal("Error de validacion");
 			model.addAttribute("curso",cursosparamodificar);
 			return "cargarCurso";
 		}
@@ -85,9 +85,9 @@ public class CursosController {
 				lista.getListado().set(i, cursosparamodificar);
 			}
 		};
-					
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/listadoCurso";
+
+		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
+		return "redirect:/listadoCursos";
 	}
 	
 	@GetMapping("/eliminarCurso/{id}")
@@ -98,19 +98,19 @@ public class CursosController {
 				cursoEncontrado = lista.getListado().remove(i);
 			}
 		};
-		MARCOS.fatal("Error de entrada"+ cursoEncontrado.getId());
+		EMILIO.fatal("Error de entrada"+ cursoEncontrado.getId());
 		ModelAndView encontrado = new ModelAndView("cursoUsuario");
 		
 		encontrado.addObject("curso", cursoEncontrado);
 		encontrado.addObject("band", "true");
 		return encontrado;
 	}
-	
-	@PostMapping("/sacarCuerso")//se recibe
+
+	@PostMapping("/sacarCurso")//se recibe
 	public String sacarCurso(@Valid  @ModelAttribute ("curso") Curso cursoparasacar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursoparasacar.getFechaNacimiento() );
+		EMILIO.info("Ingresando al metodo sacar Curso: "+ cursoparasacar.getFechaNacimiento() );
 		if(resultado.hasErrors()) {
-			MARCOS.fatal("Error de validacion");
+			EMILIO.fatal("Error de validacion");
 			model.addAttribute("curso",cursoparasacar);
 			return "cargarCurso";
 		}
@@ -119,8 +119,8 @@ public class CursosController {
 				lista.getListado().remove(i);
 			}
 		};
-					
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
+
+		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
 		return "redirect:/listadoCurso";
 	}
 }
