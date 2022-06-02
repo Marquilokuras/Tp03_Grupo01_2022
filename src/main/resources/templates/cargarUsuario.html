@@ -12,8 +12,7 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
-      <form th:object="${usuario}" th:action="${band}? @{modificarUsuario} : @{/guardarusuario}"
-        method="post">
+      <form th:object="${usuario}" th:action="${band}? @{modificarUsuario} : @{/guardarusuario}" method="post">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label> <input
             type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre completo">
@@ -44,6 +43,7 @@
         </div>
 	
 			<button type="submit" class="btn btn-primary" th:value="${bandera}? 'modificar' : 'registrarse' ">Registrarse</button>
+		
 		</form>
 	</div>
 </body>

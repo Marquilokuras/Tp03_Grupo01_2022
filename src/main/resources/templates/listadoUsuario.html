@@ -12,6 +12,7 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
+		<div class="alert-danger text-center" th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Nombre de Error</div>
 		<br>
 		<table class="table table-bordered border-primary">
 			<thead class="table-dark">
@@ -65,6 +66,23 @@
 </div>
   
 </body>
+
+<!-- Script que envia datos 
+<script type="text/javascript">
+	var exampleModal = document.getElementById('modalEliminar')
+	exampleModal.addEventListener('show.bs.modal', function(event){
+		var button = event.relatedTarget;
+		var recipient = button.getAttribute('data-bs-mail')
+		var recipient2 = button.getAttribute('data-bs-whatever')
+		var modalTitle = exampleModal.querySelector('.modal-title')
+		var modalBodyInput = exampleModal
+			.querySelector('.modal-body input')
+			
+			modalTitle.textContent = 'Eliminar Usuario ' + recipient
+			modalBodyInput.value = recipient2
+	})
+</script> -->
+
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
 	type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 <script th:src="@{/webjars/bootstrap/5.0.0/js/bootstrap.min.js}"
