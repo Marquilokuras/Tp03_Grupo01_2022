@@ -37,7 +37,7 @@ public class CursosController {
 
 	@PostMapping("/guardarCursos")//se recibe
 	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		EMILIO.info("Ingresando al metodo guardar Curso: "+ cursoparaguardar.getFechaInicio() );
+		EMILIO.info("Ingresando a metodo guardar Curso: "+ cursoparaguardar.getFechaInicio() );
 		if(resultado.hasErrors()) {
 			EMILIO.fatal("Error de validacion");
 			model.addAttribute("curso",cursoparaguardar);
