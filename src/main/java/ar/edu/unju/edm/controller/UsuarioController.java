@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.model.Usuario;
 import ar.edu.unju.edm.service.IUsuarioService;
-import ar.edu.unju.edm.until.ListaUsuario;
 
 @Controller
 public class UsuarioController {
@@ -33,7 +32,7 @@ public class UsuarioController {
 		ModelAndView vista = new ModelAndView("cargarUsuario");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("usuario", nuevoUsuario);
-		vista.addObject("band", "false");
+		vista.addObject("editMode", false);
 		return vista;
 	}
 	
@@ -50,9 +49,14 @@ public class UsuarioController {
 		try { //controla si algo se ejecuta bien
 			serviceUsuario.guardarUsuario(usuarioparaguardar);
 		}catch(Exception error){ //si no sale por aqui
+			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
+			model.addAttribute("unUsuario",usuarioparaguardar);
 			EMILIO.error("No se pudo guardar el usuario");
+			return "cargarUsuario";
 		}
-		return "redirect:/otroUsuario";
+		model.addAttribute("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
+		model.addAttribute("unUsuario", usuarioparaguardar);
+		return "cargarUsuario";
 	}
 	
 	@GetMapping("/listadoUsuario")
@@ -63,102 +67,34 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/eliminarUsuario/{dni}")
-	public String deleteUser(@PathVariable(name="dni")Long dni) {
+	public String deleteUser(@PathVariable(name="dni")Long dni, Model model) {
 		try {
 			serviceUsuario.eliminarUsuario(dni);
 		}catch(Exception error){
-			EMILIO.error("No se pudo elminar el usuario");
+			EMILIO.error("No se pudo eliminar el usuario");
+			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
+			return "redirect:/nuevoUsuario";
 		}
 		return "redirect:/listadoUsuario";
 	}
 	
-	/*@GetMapping("/editarUsuario/{dni}")
-	
-	public ModelAndView editUser(@PathVariable(name="dni")Long dni) {
+	@GetMapping("/editarUsuario/{dni}")
+	public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
 		Usuario usuarioEncontrado = new Usuario();
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getDni().equals(usuarioEncontrado)) {
-				usuarioEncontrado = lista.getListado().get(i);
-			}
-		};
-		EMILIO.fatal("Error de entrada"+usuarioEncontrado.getApellido());
-		}
-			
-		return "redirect:/listadoUsuario";
+		usuarioEncontrado = serviceUsuario.buscarUsuario(dni);
+		ModelAndView modelView = new ModelAndView("cargarUsuario");
+		modelView.addObject("usuario", usuarioEncontrado);
+		EMILIO.error("usuario: "+ usuarioEncontrado.getDni());
+		modelView.addObject("editMode", true);
+		return modelView;
 	}
 	
-	/*
 	@PostMapping("/modificarUsuario")
-	public String modUser(@Valid @ModelAttribute ("usuario") Usuario usuarioparamodificar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		lista.getListado().add(usuarioparamodificar); //el user se guarda en listado
-		EMILIO.info("Ingresando al metodo guardar. Usuario: "+usuarioparamodificar.getFechaNacimiento());
-		
-		if(resultado.hasErrors()) {
-			EMILIO.fatal("Error de Validacion");
-			model.addAttribute("usuario",usuarioparamodificar);
-			return "cargarUsuario";
-		}
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getDni().equals(usuarioparamodificar.getDni())) {
-				lista.getListado().set(i, usuarioparamodificar);
-			}
-		};
-
-		
-		lista.getListado().add(usuarioparamodificar); //el user se guarda en listado
-		
-		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect: /listadoUsuario";
+	public ModelAndView postEditarUsuario(@ModelAttribute ("usuario") Usuario usuarioparamodificar) {  
+		serviceUsuario.modificarUsuario(usuarioparamodificar);
+		ModelAndView vista = new ModelAndView("cargarUsuario");
+		vista.addObject("listaUsuario", serviceUsuario.mostrarUsuarios());
+		vista.addObject("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
+		return vista;
 	}
-	
-	/*@PostMapping("/borrarUsuario")
-	public String elimUser(@Valid @ModelAttribute ("usuario") Usuario usuarioparaeliminar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		lista.getListado().add(usuarioparaeliminar); //el user se guarda en listado
-		EMILIO.info("Ingresando al metodo guardar. Usuario: "+usuarioparaeliminar.getFechaNacimiento());
-		
-		if(resultado.hasErrors()) {
-			EMILIO.fatal("Error de Validacion");
-			model.addAttribute("usuario",usuarioparaeliminar);
-			return "cargarUsuario";
-		}
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getDni().equals(usuarioparaeliminar.getDni())) {
-				lista.getListado().set(i, usuarioparaeliminar);
-			}
-		};
-		
-		lista.getListado().add(usuarioparaeliminar); //el user se guarda en listado
-		
-		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/listadoUsuario";
-	}
-	
 }
-
-					
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/listadoUsuario";
-	}
-	
-	
-	
-	@PostMapping("/sacarUsuario")//se recibe
-	public String sacarUser(@Valid  @ModelAttribute ("usuario") Usuario usuarioparasacar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Usuario: "+ usuarioparasacar.getFechaNacimiento() );
-		if(resultado.hasErrors()) {
-			MARCOS.fatal("Error de validacion");
-			model.addAttribute("usuario",usuarioparasacar);
-			return "cargarUsuario";
-		}
-		for(int i=0;i<lista.getListado().size();i++) {
-			if(lista.getListado().get(i).getDni().equals(usuarioparasacar.getDni())) {
-				lista.getListado().remove(i);
-			}
-		};
-					
-		MARCOS.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/listadoUsuario";
-	}
-¨*/
-}
-
