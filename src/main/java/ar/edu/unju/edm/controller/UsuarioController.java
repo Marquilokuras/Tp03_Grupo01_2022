@@ -56,7 +56,7 @@ public class UsuarioController {
 		}
 		model.addAttribute("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
 		model.addAttribute("unUsuario", usuarioparaguardar);
-		return "redirect:/otroUsuario";
+		return "cargarUsuario";
 	}
 	
 	@GetMapping("/listadoUsuario")
