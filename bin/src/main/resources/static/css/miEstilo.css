@@ -1,0 +1,67 @@
+@charset "ISO-8859-1";
+
+body{
+	background:url("/img/nuevofondo2.jpg");
+	background-repeat: no-repeat;
+	background-size: 500% 500%;
+}
+
+.navbar {
+	background-color: rgb(49, 47, 47);
+}
+
+label{
+	font-size:25px;
+	color:yellow;
+	display: flex;
+}
+
+/* aviso y aside */
+
+
+
+/* aviso y aside */
+
+
+
+/* CURSOS */
+
+.cursos {
+    background: url(/img/cursos.jpg);
+    background-size: 100%;
+}
+
+h3 {
+    color: rgb(40, 29, 143);
+    text-shadow: 0 5px 3px rgba(0,0,0,0.9);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.card-border {
+    border: solid 3px #000;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+}
+
+.card-border:hover {
+    transform: scale(1.05);
+}
+
+.card-text {
+	color: black;
+}
+
+
+/* CURSOS */
+
+
+/* footer */
+.footer {
+	background-color: #000;
+	background-size: cover;
+	background-attachment: fixed;
+	color: #fff;
+}
+
+/* footer */
