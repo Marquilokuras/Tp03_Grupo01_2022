@@ -18,8 +18,7 @@ import ar.edu.unju.edm.service.IUsuarioService;
 @Controller
 public class UsuarioController {
 
-	private static final Log 
-	EMILIO=LogFactory.getLog(UsuarioController.class);//constante con mayuscula
+	private static final Log 	EMILIO=LogFactory.getLog(UsuarioController.class);//constante con mayuscula
 
 	@Autowired
 	Usuario nuevoUsuario;
@@ -37,7 +36,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/guardarusuario")
-	public String saveUser(@Valid @ModelAttribute ("usuario") Usuario usuarioparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
+	public String saveUser(@Valid @ModelAttribute("usuario") Usuario usuarioparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
 	
 		EMILIO.info("Ingresando al metodo guardar. Usuario: "+usuarioparaguardar.getFechaNacimiento());
 		
@@ -50,12 +49,12 @@ public class UsuarioController {
 			serviceUsuario.guardarUsuario(usuarioparaguardar);
 		}catch(Exception error){ //si no sale por aqui
 			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
-			model.addAttribute("unUsuario",usuarioparaguardar);
+			model.addAttribute("usuario",usuarioparaguardar);
 			EMILIO.error("No se pudo guardar el usuario");
 			return "cargarUsuario";
 		}
 		model.addAttribute("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
-		model.addAttribute("unUsuario", usuarioparaguardar);
+		model.addAttribute("usuario", nuevoUsuario);
 		return "cargarUsuario";
 	}
 	
@@ -73,7 +72,7 @@ public class UsuarioController {
 		}catch(Exception error){
 			EMILIO.error("No se pudo eliminar el usuario");
 			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
-			return "redirect:/nuevoUsuario";
+			return "redirect:/otroUsuario";
 		}
 		return "redirect:/listadoUsuario";
 	}
@@ -92,7 +91,7 @@ public class UsuarioController {
 	@PostMapping("/modificarUsuario")
 	public ModelAndView postEditarUsuario(@ModelAttribute ("usuario") Usuario usuarioparamodificar) {  
 		serviceUsuario.modificarUsuario(usuarioparamodificar);
-		ModelAndView vista = new ModelAndView("cargarUsuario");
+		ModelAndView vista = new ModelAndView("listadoUsuario");
 		vista.addObject("listaUsuario", serviceUsuario.mostrarUsuarios());
 		vista.addObject("formUsuarioErrorMessage", "Usuario Guardado Correctamente");
 		return vista;
