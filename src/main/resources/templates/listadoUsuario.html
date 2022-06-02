@@ -33,7 +33,7 @@
 					<td th:text="${u.apellido}"></td>
 					<td th:text="${u.email}"></td>
 					<td th:text="${u.dni}"></td>
-					<td th:text="${u.fechaNacimiento}"></td>
+					<td th:text="${u.fechaInicio}"></td>
 					<td><a class="btn btn-warning" th:href="@{'/editarUsuario/'+ ${u.dni}}">Editar</a><a class="btn btn-danger" th:href="@{'/eliminarUsuario/'+ ${u.dni}}">Eliminar</a></td>
 				</tr>
 			</tbody>

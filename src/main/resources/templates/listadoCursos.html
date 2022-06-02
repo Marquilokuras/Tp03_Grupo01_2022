@@ -23,8 +23,8 @@
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
-				<tr th:if="${listaUsuario.empty}">
-					<td colspan="3">No hay usuarios cargados</td>
+				<tr th:if="${listaCursos.empty}">
+					<td colspan="3">No hay cursos cargados</td>
 				</tr>
 				<tr th:each="u : ${listaCursos}">
 					<td th:text="${u.curso}"></td>

@@ -36,8 +36,8 @@
 				<div class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
 			</div>
 			<div class="mb-3">
-				<label for="fechanacimiento" class="form-label">Fecha de Inicio</label>
-				<input type="date" class="form-control"	id="fechanacimiento" th:field="*{fechaNacimiento}" placeholder="Ingrese Fecha de Inicio">
+				<label for="fechainicio" class="form-label">Fecha de Inicio</label>
+				<input type="date" class="form-control"	id="fechainicio" th:field="*{fechaInicio}" placeholder="Ingrese Fecha de Inicio">
 			</div>
 			
 			<button type="submit" class="btn btn-primary" th:value="${band}? 'modificar' : 'registrar' ">Registrar</button>

@@ -31,16 +31,16 @@ public class CursosController {
 		ModelAndView vista = new ModelAndView("cargarCurso");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("curso", nuevoCurso);
-		vista.addObject("band", "false");
+		vista.addObject("band", false);
 		return vista;
 	}
 	
 	@PostMapping("/guardarCursos")//se recibe
 	public String saveUser(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Usuario: "+ cursoparaguardar.getFechaNacimiento() );
+		MARCOS.info("Ingresando al metodo guardar Cursos: "+ cursoparaguardar.getFechaInicio() );
 		if(resultado.hasErrors()) {
 			MARCOS.fatal("Error de validacion");
-			model.addAttribute("usuario",cursoparaguardar);
+			model.addAttribute("curso",cursoparaguardar);
 			return "cargarCursos";
 		}
 		lista.getListado().add(cursoparaguardar); //el user se guarda en listado
@@ -56,7 +56,7 @@ public class CursosController {
 		return vista;
 	}
 	
-	@GetMapping("/editarCursos/{id}")
+	/*@GetMapping("/editarCursos/{id}")
 	public ModelAndView editCurso(@PathVariable(name="id")Long id) {
 		Curso cursoEncontrado = new Curso();
 		for(int i=0;i<lista.getListado().size();i++) {
@@ -72,9 +72,11 @@ public class CursosController {
 		return encontrado;
 	}
 	
+	*/
+	
 	@PostMapping("/modificarCurso")//se recibe
 	public String modCurso(@Valid  @ModelAttribute ("curso") Curso cursosparamodificar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursosparamodificar.getFechaNacimiento() );
+		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursosparamodificar.getFechaInicio() );
 		if(resultado.hasErrors()) {
 			MARCOS.fatal("Error de validacion");
 			model.addAttribute("curso",cursosparamodificar);
@@ -106,9 +108,9 @@ public class CursosController {
 		return encontrado;
 	}
 	
-	@PostMapping("/sacarCuerso")//se recibe
+	@PostMapping("/sacarCurso")//se recibe
 	public String sacarCurso(@Valid  @ModelAttribute ("curso") Curso cursoparasacar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursoparasacar.getFechaNacimiento() );
+		MARCOS.info("Ingresando al metodo guardar Curso: "+ cursoparasacar.getFechaInicio() );
 		if(resultado.hasErrors()) {
 			MARCOS.fatal("Error de validacion");
 			model.addAttribute("curso",cursoparasacar);

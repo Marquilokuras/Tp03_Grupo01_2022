@@ -29,7 +29,7 @@ public class Curso {
 	@Max(value=99999999,message="El ID debe ser menor que 9999999")
 	private Long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate fechaNacimiento;
+	private LocalDate fechaInicio;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
@@ -83,13 +83,15 @@ public class Curso {
 		this.id = id;
 	}
 
-	public LocalDate getFechaNacimiento() {
-		return fechaNacimiento;
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
+
+
 
 }
 	
