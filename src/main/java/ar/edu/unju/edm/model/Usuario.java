@@ -1,6 +1,9 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +12,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+@Entity
 @Component
 public class Usuario {
 	@NotEmpty //vacio string 
@@ -24,6 +28,7 @@ public class Usuario {
 	@NotNull //para numeros
 	@Min(value=1000000,message="El Dni debe ser mayor que millon")
 	@Max(value=99999999,message="El Dni debe ser menor que 9999999")
+	@Id
 	private Long dni;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
