@@ -37,6 +37,7 @@ public class CursosController {
 
 	@PostMapping("/guardarCursos")//se recibe
 	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
+<<<<<<< HEAD
 		EMILIO.info("Ingresando a metodo guardar Curso: "+ cursoparaguardar.getFechaInicio() );
 		if(resultado.hasErrors()) {
 			EMILIO.fatal("Error de validacion");
@@ -116,11 +117,6 @@ public class CursosController {
 		}
 		for(int i=0;i<lista.getListado().size();i++) {
 			if(lista.getListado().get(i).getIdCurso().equals(cursoparasacar.getIdCurso())) {
-				lista.getListado().remove(i);
-			}
-		};
-
-		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/listadoCurso";
+		}
 	}
 }
