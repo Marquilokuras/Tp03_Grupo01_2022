@@ -9,8 +9,8 @@ public interface IUsuarioService {
 
 	public void guardarUsuario(Usuario usuario);
 	public List<Usuario>mostrarUsuarios();
-	public void eliminarUsuario(Long dni);
+	public void eliminarUsuario(Long dni) throws Exception;
 	public void modificarUsuario(Usuario usuario);
-	public Usuario buscarUsuario(Long id);
+	public Usuario buscarUsuario(Long id) throws Exception;
 
 }
