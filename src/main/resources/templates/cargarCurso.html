@@ -15,27 +15,17 @@
 		<form th:object="${curso}" th:action="${band}? @{/modificarCurso} : @{/guardarCursos}"
 			method="post">
 			<div class="mb-3">
-				<label for="curso" class="form-label">Curso</label> <input
-					type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
-				<label for="docente" class="form-label">Docente</label> <input
-					type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> <label
-					for="exampleInputEmail1" class="form-label">Email</label> <input
-					type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" th:field="*{email}" placeholder="Ingrese email: ej@correo.com">
+				<label for="curso" class="form-label">Curso</label> <input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
+				<label for="docente" class="form-label">Docente</label> <input type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> <label
 			</div>
 			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Contraseña</label>
-				<input type="password" class="form-control"
-					id="exampleInputPassword1" th:field="*{contrasena}" placeholder="Ingrese contraseña">
-				<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></div>
 				<label for="id" class="form-label">ID</label>
-				<input type="number" class="form-control"
-					id="id" th:field="*{id}" placeholder="Ingrese ID">
-				<div class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+				<input type="number" class="form-control" id="id" th:field="*{idCurso}" placeholder="Ingrese ID">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('idCurso')}" th:errors="*{idCurso}"></div>
 			</div>
 			<div class="mb-3">
-				<label for="fechanacimiento" class="form-label">Fecha de Inicio</label>
-				<input type="date" class="form-control"	id="fechanacimiento" th:field="*{fechaNacimiento}" placeholder="Ingrese Fecha de Inicio">
+				<label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+				<input type="date" class="form-control"	id="fechanacimiento" th:field="*{fechaInicio}" placeholder="Ingrese Fecha de Inicio">
 			</div>
 
 			<button type="submit" class="btn btn-primary" th:value="${band}? 'modificar' : 'registrar' ">Registrar</button>

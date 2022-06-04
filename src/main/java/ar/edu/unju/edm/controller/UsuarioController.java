@@ -80,7 +80,11 @@ public class UsuarioController {
 	@GetMapping("/editarUsuario/{dni}")
 	public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
 		Usuario usuarioEncontrado = new Usuario();
-		usuarioEncontrado = serviceUsuario.buscarUsuario(dni);
+		try {
+			usuarioEncontrado = serviceUsuario.buscarUsuario(dni);
+		}catch(Exception e){
+			model.addAttribute("formUsuarioErrorMessage", e.getMessage());
+		}
 		ModelAndView modelView = new ModelAndView("cargarUsuario");
 		modelView.addObject("usuario", usuarioEncontrado);
 		EMILIO.error("usuario: "+ usuarioEncontrado.getDni());
