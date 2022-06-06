@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.model.Curso;
+import ar.edu.unju.edm.service.IUsuarioService;
 import ar.edu.unju.edm.until.ListaCursos;
 
 
@@ -22,6 +23,9 @@ public class CursosController {
 
 	@Autowired
 	Curso nuevoCurso;
+	
+	@Autowired
+	IUsuarioService serviceCurso;
 	
 	@Autowired
 	ListaCursos lista;
