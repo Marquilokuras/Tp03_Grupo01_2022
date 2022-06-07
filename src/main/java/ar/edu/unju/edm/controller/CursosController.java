@@ -35,11 +35,13 @@ public class CursosController {
 		ModelAndView vista = new ModelAndView("cargarCurso");
 		vista.addObject("curso", nuevoCurso);
 		vista.addObject("editMode", false);
+
 		return vista;
 	}
 
 	@PostMapping("/guardarCursos")
 	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
+
 		if(resultado.hasErrors()) {
 			EMILIO.fatal("Error de Validacion");
 			model.addAttribute("curso",cursoparaguardar);
@@ -48,13 +50,11 @@ public class CursosController {
 		try { //controla si algo se ejecuta bien
 			serviceCurso.guardarCursos(cursoparaguardar);
 		}catch(Exception error){ //si no sale por aqui
-			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
+			model.addAttribute("formCursoErrorMessage", error.getMessage());
 			model.addAttribute("curso",cursoparaguardar);
 			EMILIO.error("No se pudo guardar el curso");
 			return "cargarCurso";
 		}
-		model.addAttribute("formCursoErrorMessage", "Curso Guardado Correctamente");
-		model.addAttribute("curso", nuevoCurso);
 		return "cargarCurso";
 	}
 
@@ -68,6 +68,7 @@ public class CursosController {
 	@GetMapping("/editarCursos/{idCurso}")
 	public ModelAndView editCurso(@PathVariable(name="idCurso")Long idCurso,Model model) throws Exception{
 		Curso cursoEncontrado = new Curso();
+
 		try {
 			cursoEncontrado = serviceCurso.buscarCurso(idCurso);
 		}catch(Exception e){
@@ -78,6 +79,7 @@ public class CursosController {
 		EMILIO.error("curso: "+ cursoEncontrado.getIdCurso());
 		modelView.addObject("editMode", true);
 		return modelView;
+
 	}
 
 	@PostMapping("/modificarCurso")//se recibe
@@ -90,6 +92,7 @@ public class CursosController {
 	}
 	
 	@GetMapping("/eliminarCurso/{idCurso}")
+
 	public String deleteCurso(@PathVariable(name="idCurso")Long idCurso, Model model) {
 		try {
 			serviceCurso.eliminarCurso(idCurso);
@@ -97,6 +100,7 @@ public class CursosController {
 			EMILIO.error("No se pudo eliminar el curso");
 			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
 			return "redirect:/otroCursos";
+
 		}
 		return "redirect:/listadoCursos";
 	}

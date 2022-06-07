@@ -35,6 +35,14 @@
 				<tr th:each="u:${listaCursos}">
 					<td th:text="${u.curso}"></td>
 					<td th:text="${u.docente}"></td>
+					<td th:text="${u.email}"></td>
+					<td th:text="${u.cantidadHoras}"></td>
+					<td th:text="${u.id}"></td>
+					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.idCurso}}">Editar</a>
+					<a class="btn btn-danger" 
+						th:onclick="'javascript:confirmarEliminar(\''+${u.idCurso}+'\');'"	
+						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
+
 					<td th:text="${u.descripcion}"></td>
 					<td th:text="${u.duracion}"></td>
 					<td th:text="${u.idCurso}"></td>
@@ -45,6 +53,7 @@
 					<td th:text="${u.valoracion}"></td>
 					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.idCurso}}">Editar</a>
 					<a class="btn btn-danger" th:onclick="'javascript:confirmarEliminar(\''+${u.idCurso}+'\');'">Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
+
 				</tr>
 			</tbody>
 		</table>
