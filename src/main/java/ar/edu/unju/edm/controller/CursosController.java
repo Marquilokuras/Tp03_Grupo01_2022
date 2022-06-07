@@ -36,6 +36,7 @@ public class CursosController {
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("curso", nuevoCurso);
 		vista.addObject("editMode", false);
+		
 		return vista;
 	}
 
