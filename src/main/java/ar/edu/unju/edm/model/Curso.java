@@ -129,7 +129,7 @@ public class Curso {
 	public void setValoracion(Integer valoracion) {
 		this.valoracion = valoracion;
 	}
-
+  
 	public Boolean getEstadoCurso() {
 		return estadoCurso;
 	}

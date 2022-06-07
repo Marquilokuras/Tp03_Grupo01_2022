@@ -13,11 +13,7 @@ public interface ICursoService {
 
 	public List<Curso> mostrarCursos();
 	public void guardarCursos(@Valid Curso cursoparaguardar);
-
 	public void modificarCurso(Curso curso);
 	public Curso buscarCurso(Long idCurso) throws Exception;
 	public void eliminarCurso(Long idCurso) throws Exception;
-
- 
-
 }

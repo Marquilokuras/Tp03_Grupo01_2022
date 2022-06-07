@@ -11,7 +11,6 @@ public class ListaUsuario {
 	public ListaUsuario() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public List<Usuario> getListado() {
 		return listado;
 	}

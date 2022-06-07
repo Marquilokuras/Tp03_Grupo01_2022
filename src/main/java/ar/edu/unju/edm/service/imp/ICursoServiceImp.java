@@ -10,7 +10,7 @@ import ar.edu.unju.edm.service.ICursoService;
 import ar.edu.unju.edm.until.ListaCursos;
 
 @Service
-public class ICursoServiceImp implements ICursoService {
+public class ICursoServiceImp implements ICursoService{
 	
 	@Autowired
 	ListaCursos lista;
@@ -52,10 +52,7 @@ public class ICursoServiceImp implements ICursoService {
 	@Override
 	public void modificarCurso(Curso curso) {
 		// TODO Auto-generated method stub
-
 		curso.setEstadoCurso(true);
-
-
 		cursoRepository.save(curso);
 	}
 
@@ -66,6 +63,4 @@ public class ICursoServiceImp implements ICursoService {
 		cursoEncontrado=cursoRepository.findById(idCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
 		return cursoEncontrado;
 	}
-
-
 }
