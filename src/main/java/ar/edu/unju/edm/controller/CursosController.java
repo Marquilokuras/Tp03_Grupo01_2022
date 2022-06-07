@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.model.Curso;
-import ar.edu.unju.edm.service.IUsuarioService;
+import ar.edu.unju.edm.service.ICursoService;
 import ar.edu.unju.edm.until.ListaCursos;
 
 
@@ -25,7 +25,7 @@ public class CursosController {
 	Curso nuevoCurso;
 	
 	@Autowired
-	IUsuarioService serviceCurso;
+	ICursoService serviceCurso;
 	
 	@Autowired
 	ListaCursos lista;
@@ -35,21 +35,30 @@ public class CursosController {
 		ModelAndView vista = new ModelAndView("cargarCurso");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("curso", nuevoCurso);
-		vista.addObject("band", "false");
+		vista.addObject("editMode", false);
 		return vista;
 	}
 
 	@PostMapping("/guardarCursos")//se recibe
 	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-		EMILIO.info("Ingresando a metodo guardar Curso: "+ cursoparaguardar.getFechaInicio() );
+
+		
 		if(resultado.hasErrors()) {
-			EMILIO.fatal("Error de validacion");
+			EMILIO.fatal("Error de Validacion");
 			model.addAttribute("curso",cursoparaguardar);
 			return "cargarCurso";
 		}
-		lista.getListado().add(cursoparaguardar); //el user se guarda en listado
-		EMILIO.error("Tamaño del Listado: " + lista.getListado().size());
-		return "redirect:/otroCursos";
+		try { //controla si algo se ejecuta bien
+			serviceCurso.guardarCursos(cursoparaguardar);
+		}catch(Exception error){ //si no sale por aqui
+			model.addAttribute("formCursoErrorMessage", error.getMessage());
+			model.addAttribute("curso",cursoparaguardar);
+			EMILIO.error("No se pudo guardar el curso");
+			return "cargarCurso";
+		}
+		model.addAttribute("formUsuarioErrorMessage", "Curso Guardado Correctamente");
+		model.addAttribute("curso", nuevoCurso);
+		return "cargarCurso";
 	}
 
 	@GetMapping("/listadoCursos")
@@ -72,7 +81,7 @@ public class CursosController {
 		ModelAndView encontrado = new ModelAndView("cargarCurso");
 
 		encontrado.addObject("curso", cursoEncontrado);
-		encontrado.addObject("band", "true");
+		encontrado.addObject("editMode", true);
 		return encontrado;
 	}
 
@@ -94,8 +103,8 @@ public class CursosController {
 		return "redirect:/listadoCursos";
 	}
 	
-	@GetMapping("/eliminarCurso/{id}")
-	public ModelAndView deleteCurso(@PathVariable(name="id")Long id) {
+	@GetMapping("/eliminarCurso/{idCurso}")
+	public ModelAndView deleteCurso(@PathVariable(name="idCurso")Long id) {
 		Curso cursoEncontrado = new Curso();
 		for(int i=0;i<lista.getListado().size();i++) {
 			if(lista.getListado().get(i).getIdCurso().equals(id)) {
@@ -106,7 +115,7 @@ public class CursosController {
 		ModelAndView encontrado = new ModelAndView("cursoUsuario");
 		
 		encontrado.addObject("curso", cursoEncontrado);
-		encontrado.addObject("band", "true");
+		encontrado.addObject("editMode", true);
 		return encontrado;
 	}
 

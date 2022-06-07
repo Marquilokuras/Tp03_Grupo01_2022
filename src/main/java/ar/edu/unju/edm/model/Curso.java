@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +15,11 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Curso {
 	@NotEmpty //vacio string 
-	@Size (min=5, max=30, message="El nombre del curso de contener entre 5 a 30 caracteres")
-	private String curso;
+	private String nombreCurso;
 	@NotEmpty //vacio string
 	private String docente;
 	@Column(name="descripcion")
+	@NotEmpty
 	private String descripcion;
 	@NotNull
 	private Integer duracion;
@@ -36,18 +35,18 @@ public class Curso {
 	@NotNull
 	private Double costo;
 	private Integer valoracion;
-	private Boolean estado;
+	private Boolean estadoCurso;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getCurso() {
-		return curso;
+	public String getnombreCurso() {
+		return nombreCurso;
 	}
 
-	public void setCurso(String curso) {
-		this.curso = curso;
+	public void setnombreCurso(String curso) {
+		this.nombreCurso = curso;
 	}
 
 	public String getDocente() {
@@ -122,11 +121,11 @@ public class Curso {
 		this.valoracion = valoracion;
 	}
 
-	public Boolean getEstado() {
-		return estado;
+	public Boolean getEstadoCurso() {
+		return estadoCurso;
 	}
 
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
+	public void setEstadoCurso(Boolean estado) {
+		this.estadoCurso = estado;
 	}
 }

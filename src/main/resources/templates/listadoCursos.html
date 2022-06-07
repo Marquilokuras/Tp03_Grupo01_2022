@@ -34,9 +34,9 @@
 					<td th:text="${u.email}"></td>
 					<td th:text="${u.cantidadHoras}"></td>
 					<td th:text="${u.id}"></td>
-					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.id}}">Editar</a>
+					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.idCurso}}">Editar</a>
 					<a class="btn btn-danger" 
-						th:onclick="'javascript:confirmarEliminar(\''+${u.id}+'\');'"	
+						th:onclick="'javascript:confirmarEliminar(\''+${u.idCurso}+'\');'"	
 						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
 				</tr>
 			</tbody>
