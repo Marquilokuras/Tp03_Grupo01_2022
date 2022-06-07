@@ -41,10 +41,10 @@ public class ICursoServiceImp implements ICursoService {
 	}
 	
 	@Override
-	public void eliminarCurso(Long dniCurso) throws Exception {
+	public void eliminarCurso(Long idCurso) throws Exception {
 		// TODO Auto-generated method stub
 		Curso auxiliar = new Curso();
-		auxiliar = buscarCurso(dniCurso) ;
+		auxiliar = buscarCurso(idCurso) ;
 		auxiliar.setEstado(false);
 		cursoRepository.save(auxiliar);
 	}
@@ -57,10 +57,10 @@ public class ICursoServiceImp implements ICursoService {
 	}
 
 	@Override
-	public Curso buscarCurso(Long dniCurso) throws Exception {
+	public Curso buscarCurso(Long idCurso) throws Exception {
 		// TODO Auto-generated method stub´
 		Curso cursoEncontrado = new Curso();
-		cursoEncontrado=cursoRepository.findById(dniCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
+		cursoEncontrado=cursoRepository.findById(idCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
 		return cursoEncontrado;
 	}
 }
