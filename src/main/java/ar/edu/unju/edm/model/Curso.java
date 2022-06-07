@@ -1,6 +1,9 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +25,8 @@ public class Curso {
 	@NotEmpty
 	private String descripcion;
 	@NotNull
+	@Min(value=0,message="El duracion debe ser mayor que 0")
+	@Max(value=8760,message="El duracion debe ser menor que 8760")
 	private Integer duracion;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,8 +36,12 @@ public class Curso {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaFinal;
 	@NotNull
+	@Min(value=1,message="El duracion debe ser mayor que 1")
+	@Max(value=99999,message="El duracion debe ser menor que 99999")
 	private Integer cupo;
 	@NotNull
+	@Min(value=1,message="El duracion debe ser mayor que 1")
+	@Max(value=99999,message="El duracion debe ser menor que 99999")
 	private Double costo;
 	private Integer valoracion;
 	private Boolean estadoCurso;

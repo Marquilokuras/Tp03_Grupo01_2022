@@ -18,7 +18,7 @@ import ar.edu.unju.edm.service.IUsuarioService;
 @Controller
 public class UsuarioController {
 
-	private static final Log 	EMILIO=LogFactory.getLog(UsuarioController.class);//constante con mayuscula
+	private static final Log EMILIO=LogFactory.getLog(UsuarioController.class);//constante con mayuscula
 
 	@Autowired
 	Usuario nuevoUsuario;
