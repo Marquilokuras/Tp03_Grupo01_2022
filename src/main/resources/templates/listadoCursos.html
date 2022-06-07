@@ -18,26 +18,33 @@
 				<tr>
 					<th scope="col">Cursos</th>
 					<th scope="col">Docente</th>
-					<th scope="col">Email</th>
-					<th scope="col">Cantidad de Horas</th>
-					<th scope="col">ID</th>
-					<th scope="col">Edicion</th> 
+					<th scope="col">Descripcion</th>
+					<th scope="col">Duracion</th>
+					<th scope="col">Id</th>
+					<th scope="col">Fecha de Inicio</th>
+					<th scope="col">Fecha de Finalizacion</th> 
+					<th scope="col">Cupo</th>
+					<th scope="col">Costo</th>
+					<th scope="col">Valoracion</th>
 				</tr>
 			</thead>
 			<tbody class="table-secondary">
 				<tr th:if="${listaCursos.empty}">
-					<td colspan="6">No hay usuarios cargados</td>
+					<td colspan="10">No hay cursos cargados</td>
 				</tr>
-				<tr th:each="u : ${listaCursos}">
+				<tr th:each="u:${listaCursos}">
 					<td th:text="${u.curso}"></td>
 					<td th:text="${u.docente}"></td>
-					<td th:text="${u.email}"></td>
-					<td th:text="${u.cantidadHoras}"></td>
-					<td th:text="${u.id}"></td>
-					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.id}}">Editar</a>
-					<a class="btn btn-danger" 
-						th:onclick="'javascript:confirmarEliminar(\''+${u.id}+'\');'"	
-						>Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
+					<td th:text="${u.descripcion}"></td>
+					<td th:text="${u.duracion}"></td>
+					<td th:text="${u.idCurso}"></td>
+					<td th:text="${u.fechaInicio}"></td>
+					<td th:text="${u.FechaFinal}"></td>
+					<td th:text="${u.cupo}"></td>
+					<td th:text="${u.costo}"></td>
+					<td th:text="${u.valoracion}"></td>
+					<td><a class="btn btn-warning" th:href="@{'/editarCursos/'+ ${u.idCurso}}">Editar</a>
+					<a class="btn btn-danger" th:onclick="'javascript:confirmarEliminar(\''+${u.idCurso}+'\');'">Eliminar</a></td>  <!-- data-bs-toggle="modol" data-bs-target="#exampleModal"  @{'/eliminarCurso/'+ }-->
 				</tr>
 			</tbody>
 		</table>
