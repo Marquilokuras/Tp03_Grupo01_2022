@@ -30,11 +30,7 @@ public class ICursoServiceImp implements ICursoService{
 		// TODO Auto-generated method stub
 		List<Curso> auxiliar = new ArrayList<>();
 		List<Curso> auxiliar2 = new ArrayList<>();
-<<<<<<< HEAD
-		auxiliar =(List<Curso>) cursoRepository.findAll();
-=======
 		auxiliar=(List<Curso>)cursoRepository.findAll();
->>>>>>> branch 'master' of https://github.com/Marquilokuras/Tp03_Grupo01_2022.git
 		for(int i=0;i<auxiliar.size();i++) {
 			if(auxiliar.get(i).getEstad()==true) {
 				auxiliar2.add(auxiliar.get(i));
@@ -45,16 +41,11 @@ public class ICursoServiceImp implements ICursoService{
 	}
 	
 	@Override
-	public void eliminarUsuario(Long idCurso) throws Exception {
+	public void eliminarCurso(Long idCurso) throws Exception {
 		// TODO Auto-generated method stub
 		Curso auxiliar = new Curso();
-<<<<<<< HEAD
-		auxiliar = buscarCurso(idCurso) ;
-		auxiliar.setEstad(false);
-=======
 		auxiliar = buscarCurso(idCurso);
-		auxiliar.setEstado(false);
->>>>>>> branch 'master' of https://github.com/Marquilokuras/Tp03_Grupo01_2022.git
+		auxiliar.setEstad(false);
 		cursoRepository.save(auxiliar);
 	}
 	
@@ -72,4 +63,6 @@ public class ICursoServiceImp implements ICursoService{
 		cursoEncontrado=cursoRepository.findById(idCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
 		return cursoEncontrado;
 	}
+
+	
 }

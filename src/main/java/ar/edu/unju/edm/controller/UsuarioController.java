@@ -28,6 +28,7 @@ public class UsuarioController {
 	
 	@GetMapping("/otroUsuario")//entra
 	public ModelAndView addUser() {
+		EMILIO.info("Ingresando al metodo:bbbb ");
 		ModelAndView vista = new ModelAndView("cargarUsuario");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("usuario", nuevoUsuario);
@@ -78,21 +79,23 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/editarUsuario/{dni}")
-	public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
-		Usuario usuarioEncontrado = new Usuario();
+	//public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
+	public ModelAndView edituser(Model model,@PathVariable (name="dni") Long dni)throws Exception {	
+	Usuario usuarioEncontrado = new Usuario();
 		try {
 			usuarioEncontrado = serviceUsuario.buscarUsuario(dni);
-		}catch(Exception e){
-			model.addAttribute("formUsuarioErrorMessage", e.getMessage());
+		}catch(Exception error){
+			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
 		}
 		ModelAndView modelView = new ModelAndView("cargarUsuario");
 		modelView.addObject("usuario", usuarioEncontrado);
-		EMILIO.error("usuario: "+ usuarioEncontrado.getDni());
+		EMILIO.error("saliendo del metodo :AAAAAA"+ usuarioEncontrado.getDni());
+		//EMILIO.error("usuario: "+ usuarioEncontrado.getDni());
 		modelView.addObject("editMode", true);
 		return modelView;
 	}
 	
-	@PostMapping("/modificarUsuario")
+	@PostMapping("/editarUsuario")
 	public ModelAndView postEditarUsuario(@ModelAttribute ("usuario") Usuario usuarioparamodificar) {  
 		serviceUsuario.modificarUsuario(usuarioparamodificar);
 		ModelAndView vista = new ModelAndView("listadoUsuario");
