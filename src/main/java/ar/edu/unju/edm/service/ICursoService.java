@@ -12,5 +12,4 @@ public interface ICursoService {
 	public void eliminarCurso(Long idCurso) throws Exception;
 	public void modificarCurso(Curso curso);
 	public Curso buscarCurso(Long idCurso) throws Exception;
-
 }

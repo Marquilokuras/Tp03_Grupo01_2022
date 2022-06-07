@@ -20,6 +20,7 @@ import ar.edu.unju.edm.service.ICursoService;
 public class CursosController {
 	private static final Log EMILIO=LogFactory.getLog(CursosController.class); //.getLog(UsuarioController.class);//constante con mayuscula 
 
+	
 	@Autowired
 	Curso nuevoCurso;
 	
