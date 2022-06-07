@@ -37,7 +37,6 @@ public class ICursoServiceImp implements ICursoService{
 			}
 		}
 		return auxiliar2;
-	
 	}
 	
 	@Override

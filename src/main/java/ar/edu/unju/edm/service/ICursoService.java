@@ -10,7 +10,6 @@ import ar.edu.unju.edm.model.Curso;
 @Service
 public interface ICursoService {
 
-
 	public List<Curso> mostrarCursos();
 	public void guardarCursos(@Valid Curso cursoparaguardar);
 	public void modificarCurso(Curso curso);
