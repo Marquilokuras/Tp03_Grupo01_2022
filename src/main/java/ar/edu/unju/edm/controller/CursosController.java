@@ -14,20 +14,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.model.Curso;
 import ar.edu.unju.edm.service.ICursoService;
-import ar.edu.unju.edm.until.ListaCursos;
+//import ar.edu.unju.edm.until.ListaCursos;
 
 @Controller
 public class CursosController {
 	private static final Log EMILIO=LogFactory.getLog(CursosController.class); //.getLog(UsuarioController.class);//constante con mayuscula 
 
+	
 	@Autowired
 	Curso nuevoCurso;
 	
 	@Autowired
 	ICursoService serviceCurso;
 	
-	@Autowired
-	ListaCursos lista;
+	//@Autowired
+	//ListaCursos lista;
 
 	@GetMapping("/otroCursos")//entra
 	public ModelAndView addCurso() {
@@ -48,9 +49,9 @@ public class CursosController {
 			serviceCurso.guardarCursos(cursoparaguardar);
 		}catch(Exception error){ //si no sale por aqui
 			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
-			model.addAttribute("usuario",cursoparaguardar);
+			model.addAttribute("curso",cursoparaguardar);
 			EMILIO.error("No se pudo guardar el curso");
-			return "cargarUsuario";
+			return "cargarCurso";
 		}
 		model.addAttribute("formCursoErrorMessage", "Curso Guardado Correctamente");
 		model.addAttribute("curso", nuevoCurso);
@@ -60,12 +61,12 @@ public class CursosController {
 	@GetMapping("/listadoCursos")
 	public ModelAndView showCursos() {
 		ModelAndView vista = new ModelAndView("listadoCursos");
-		vista.addObject("listaCursos", lista.getListado());
+		vista.addObject("listaCursos", serviceCurso.mostrarCursos());
 		return vista;
 	}
 
 	@GetMapping("/editarCursos/{idCurso}")
-	public ModelAndView editCurso(@PathVariable(name="idCurso")Long idCurso,Model model) {
+	public ModelAndView editCurso(@PathVariable(name="idCurso")Long idCurso,Model model) throws Exception{
 		Curso cursoEncontrado = new Curso();
 		try {
 			cursoEncontrado = serviceCurso.buscarCurso(idCurso);

@@ -10,7 +10,7 @@ import ar.edu.unju.edm.service.ICursoService;
 import ar.edu.unju.edm.until.ListaCursos;
 
 @Service
-public class ICursoServiceImp implements ICursoService {
+public class ICursoServiceImp implements ICursoService{
 	
 	@Autowired
 	ListaCursos lista;
@@ -19,10 +19,10 @@ public class ICursoServiceImp implements ICursoService {
 	CursoRepository cursoRepository;
 	
 	@Override
-	public void guardarCursos(Curso cursoParaGuardar) {
+	public void guardarCursos(Curso cursoparaguardar) {
 		// TODO Auto-generated method stub
-		cursoParaGuardar.setEstado(true);
-		cursoRepository.save(cursoParaGuardar);
+		cursoparaguardar.setEstad(true);
+		cursoRepository.save(cursoparaguardar);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class ICursoServiceImp implements ICursoService {
 		List<Curso> auxiliar2 = new ArrayList<>();
 		auxiliar=(List<Curso>)cursoRepository.findAll();
 		for(int i=0;i<auxiliar.size();i++) {
-			if(auxiliar.get(i).getEstado()==true) {
+			if(auxiliar.get(i).getEstad()==true) {
 				auxiliar2.add(auxiliar.get(i));
 			}
 		}
@@ -41,18 +41,18 @@ public class ICursoServiceImp implements ICursoService {
 	}
 	
 	@Override
-	public void eliminarUsuario(Long idCurso) throws Exception {
+	public void eliminarCurso(Long idCurso) throws Exception {
 		// TODO Auto-generated method stub
 		Curso auxiliar = new Curso();
 		auxiliar = buscarCurso(idCurso);
-		auxiliar.setEstado(false);
+		auxiliar.setEstad(false);
 		cursoRepository.save(auxiliar);
 	}
 	
 	@Override
 	public void modificarCurso(Curso curso) {
 		// TODO Auto-generated method stub
-		curso.setEstado(true);
+		curso.setEstad(true);
 		cursoRepository.save(curso);
 	}
 
@@ -63,4 +63,6 @@ public class ICursoServiceImp implements ICursoService {
 		cursoEncontrado=cursoRepository.findById(idCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
 		return cursoEncontrado;
 	}
+
+	
 }

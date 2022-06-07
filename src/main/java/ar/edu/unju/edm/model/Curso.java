@@ -45,7 +45,7 @@ public class Curso {
 	@Max(value=99999,message="El duracion debe ser menor que 99999")
 	private Double costo;
 	private Integer valoracion;
-	private Boolean estado;
+	private Boolean estad;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
@@ -131,11 +131,11 @@ public class Curso {
 		this.valoracion = valoracion;
 	}
 
-	public Boolean getEstado() {
-		return estado;
+	public Boolean getEstad() {
+		return estad;
 	}
 
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
+	public void setEstad(Boolean estad) {
+		this.estad = estad;
 	}
 }
