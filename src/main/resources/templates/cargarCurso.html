@@ -12,8 +12,9 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
-		<form th:object="${curso}" th:action="${band}? @{/modificarCurso} : @{/guardarCursos}"
+		<form th:object="${curso}" th:action="${editMode}? @{/modificarCurso} : @{/guardarCursos}"
 			method="post">
+		 	<input type="idden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
 			<div class="mb-3">
 				<label for="curso" class="form-label">Curso</label> <input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
 				<label for="docente" class="form-label">Docente</label> <input type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> 
@@ -48,7 +49,7 @@
 			    <a href="#">★</a>
 			</div>
 			<div>
-				<button type="submit" class="btn btn-primary" th:value="${band}? 'modificar' : 'registrar' ">Registrar</button>
+				<button type="submit" class="btn btn-primary" th:value="${editMode}? 'modificar' : 'registrar' ">Registrar</button>
 			</div>
 		</form>
 	</div>

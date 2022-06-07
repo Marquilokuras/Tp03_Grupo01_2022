@@ -30,8 +30,6 @@ aside {
 
 /* aviso y aside */
 
-
-
 /* CURSOS */
 
 .cursos {
@@ -71,34 +69,3 @@ h3 {
 }
 
 /* footer */
-
-/* Para estrellas de la valoracion de Cursos */
-
-.star-rating{
-  size: 20px;
-  normal: #95A5A6;
-  selected: #F39C12;
-  
-  display: inline-block;
-}
- 
-a{
-    display: inline-block;
-    width: 30px;
-    height:30px;
-    line-height: 30px;
-    font-size: 30px;
-    color: normal;
-    text-decoration: none;
-    text-align: center;
-    transition: color .5s;
-}
-  
-:hover a{
-    color: orange;
-}
-    
-:hover ~ a{
-      color: normal;
-}
-  

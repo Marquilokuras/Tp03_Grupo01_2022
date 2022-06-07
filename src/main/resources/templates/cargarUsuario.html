@@ -13,24 +13,24 @@
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
       <form th:object="${usuario}" th:action="${editMode}? @{modificarUsuario} : @{/guardarusuario}" method="post">
-      <input type="idden" class="form-control" th:if="${band}" th:field="*{contrasena}">
-      <input type="idden" class="form-control" th:if="${band}" th:field="*{estado}">
-      <input type="idden" class="form-control" th:if="${band}" th:field="*{dni}">
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label> <input
-            type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre completo">
-          <label for="apellido" class="form-label">Apellido</label> <input
-            type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese apellido"> <label
-            for="exampleInputEmail1" class="form-label">Email</label> <input
-            type="email" class="form-control" id="exampleInputEmail1"
-            aria-describedby="emailHelp" th:field="*{email}" placeholder="Ingrese email: ej@correo.com">
+	      <input type="idden" class="form-control" th:if="${band}" th:field="*{contrasena}">
+	      <input type="idden" class="form-control" th:if="${band}" th:field="*{estado}">
+	      <input type="idden" class="form-control" th:if="${band}" th:field="*{dni}">
+       	  <div class="mb-3">
+	          <label for="nombre" class="form-label">Nombre</label> <input
+	            type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre completo">
+	          <label for="apellido" class="form-label">Apellido</label> <input
+	            type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese apellido"> <label
+	            for="exampleInputEmail1" class="form-label">Email</label> <input
+	            type="email" class="form-control" id="exampleInputEmail1"
+	            aria-describedby="emailHelp" th:field="*{email}" placeholder="Ingrese email: ej@correo.com">
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Contraseña</label>
 				<input type="password" class="form-control"
 					id="exampleInputPassword1" th:field="*{contrasena}" th:if="${editMode==false}" placeholder="Ingrese contraseña">
-					<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}" ></div>
-        </div>
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}" ></div>
+        	</div>
         <div class="mb-3">
           <label for="dni" class="form-label">DNI</label>
           <input type="number" class="form-control"

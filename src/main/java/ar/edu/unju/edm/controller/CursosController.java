@@ -35,7 +35,7 @@ public class CursosController {
 		ModelAndView vista = new ModelAndView("cargarCurso");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("curso", nuevoCurso);
-		vista.addObject("band", "false");
+		vista.addObject("editMode", false);
 		return vista;
 	}
 
