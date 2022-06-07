@@ -79,6 +79,7 @@ public class UsuarioController {
 	}
 	
 	
+	
 	@GetMapping("/editarUsuario/{dni}")
 	//public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
 	public ModelAndView edituser(Model model,@PathVariable (name="dni") Long dni)throws Exception {	
