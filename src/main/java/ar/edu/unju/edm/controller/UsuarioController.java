@@ -28,7 +28,6 @@ public class UsuarioController {
 	
 	@GetMapping("/otroUsuario")//entra
 	public ModelAndView addUser() {
-		EMILIO.info("Ingresando al metodo:bbbb ");
 		ModelAndView vista = new ModelAndView("cargarUsuario");//pasa nombre de la lista a pasar
 		//vista.addObject("nuevoUsuario");
 		vista.addObject("usuario", nuevoUsuario);

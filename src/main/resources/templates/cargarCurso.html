@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Formulario</title>
+<title>Formulario Curso</title>
 <link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}"
 	rel="stylesheet" type="text/css">
 <link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css">
@@ -12,10 +12,10 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
-		<form th:object="${curso}" th:action="${editMode}? @{/modificarCurso} : @{/guardarCursos}" method="post">
+		<form th:object="${curso}" th:action="${editMode}? @{/editarCursos} : @{/guardarCursos}" method="post">
 			
-     	 	<input type="idden" class="form-control" th:if="${bandCurso}" th:field="*{estadoCurso}">
-     	 	<input type="idden" class="form-control" th:if="${bandCurso}" th:field="*{idCurso}">
+     	 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{estadoCurso}">
+     	 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
 			
 			<div class="mb-3">
           <label for="id" class="form-label">ID del curso</label>
@@ -58,13 +58,12 @@
 			
 			<div class="mb-3">
           <label for="costo" class="form-label">Costo/Precio</label>
-          <input type="number" class="form-control"
-            id="costo" th:field="*{costo}" placeholder="Ingrese el precio del curso">
+          <input type="number" class="form-control" id="costo" th:field="*{costo}" placeholder="Ingrese el precio del curso">
  
         </div>
 
 			<button type="submit" class="btn btn-primary"
-				th:value="${bandCurso}? 'modificar' : 'registrar' ">Registrar Curso</button>
+				th:value="${editMode}? 'Modificar' : 'Registrar' ">Registrar Curso</button>
 		</form>
 	</div>
 </body>

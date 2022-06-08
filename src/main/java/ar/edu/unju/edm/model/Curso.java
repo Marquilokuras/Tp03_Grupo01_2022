@@ -43,6 +43,8 @@ public class Curso {
 	@Min(value=1,message="El duracion debe ser mayor que 1")
 	@Max(value=99999,message="El duracion debe ser menor que 99999")
 	private Double costo;
+	@Min(value=1,message="El valoracion debe ser mayor que 1")
+	@Max(value=5,message="El valoracion debe ser menor que 5")
 	private Integer valoracion;
 	private Boolean estadoCurso;
 	

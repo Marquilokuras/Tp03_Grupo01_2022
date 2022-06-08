@@ -19,10 +19,10 @@ public class ICursoServiceImp implements ICursoService{
 	CursoRepository cursoRepository;
 	
 	@Override
-	public void guardarCursos(Curso cursoParaGuardar) {
+	public void guardarCursos(Curso cursoparaguardar) {
 		// TODO Auto-generated method stub
-		cursoParaGuardar.setEstadoCurso(true);
-		cursoRepository.save(cursoParaGuardar);
+		cursoparaguardar.setEstadoCurso(true);
+		cursoRepository.save(cursoparaguardar);
 	}
 
 	@Override
@@ -37,7 +37,6 @@ public class ICursoServiceImp implements ICursoService{
 			}
 		}
 		return auxiliar2;
-	
 	}
 	
 	@Override

@@ -20,7 +20,6 @@ import ar.edu.unju.edm.service.ICursoService;
 public class CursosController {
 	private static final Log EMILIO=LogFactory.getLog(CursosController.class); //.getLog(UsuarioController.class);//constante con mayuscula 
 
-	
 	@Autowired
 	Curso nuevoCurso;
 	
@@ -32,16 +31,14 @@ public class CursosController {
 
 	@GetMapping("/otroCursos")//entra
 	public ModelAndView addCurso() {
-		ModelAndView vista = new ModelAndView("cargarCurso");
+		ModelAndView vista = new ModelAndView("cargarCurso");//pasa nombre de la lista a pasar
 		vista.addObject("curso", nuevoCurso);
 		vista.addObject("editMode", false);
-
 		return vista;
 	}
-
+	
 	@PostMapping("/guardarCursos")
-	public String saveCurso(@Valid  @ModelAttribute ("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
-
+	public String saveCurso(@Valid @ModelAttribute("curso") Curso cursoparaguardar, BindingResult resultado, Model model) { //del modelo viene 1 atributo llamado usuario y lo agarra le indica el tipo y un nombre 
 		if(resultado.hasErrors()) {
 			EMILIO.fatal("Error de Validacion");
 			model.addAttribute("curso",cursoparaguardar);
@@ -55,53 +52,53 @@ public class CursosController {
 			EMILIO.error("No se pudo guardar el curso");
 			return "cargarCurso";
 		}
+		model.addAttribute("formCursoErrorMessage", "Curso Guardado Correctamente");
+		model.addAttribute("curso", nuevoCurso);
 		return "cargarCurso";
 	}
-
+	
 	@GetMapping("/listadoCursos")
-	public ModelAndView showCursos() {
+	public ModelAndView showCurso() {
 		ModelAndView vista = new ModelAndView("listadoCursos");
 		vista.addObject("listaCursos", serviceCurso.mostrarCursos());
-		return vista;
-	}
-
-	@GetMapping("/editarCursos/{idCurso}")
-	public ModelAndView editCurso(@PathVariable(name="idCurso")Long idCurso,Model model) throws Exception{
-		Curso cursoEncontrado = new Curso();
-
-		try {
-			cursoEncontrado = serviceCurso.buscarCurso(idCurso);
-		}catch(Exception e){
-			model.addAttribute("formUsuarioErrorMessage", e.getMessage());
-		}
-		ModelAndView modelView = new ModelAndView("cargarCurso");
-		modelView.addObject("curso", cursoEncontrado);
-		EMILIO.error("curso: "+ cursoEncontrado.getIdCurso());
-		modelView.addObject("editMode", true);
-		return modelView;
-
-	}
-
-	@PostMapping("/modificarCurso")//se recibe
-	public ModelAndView postEditarCurso(@ModelAttribute ("curso") Curso cursoparamodificar) {  
-		serviceCurso.modificarCurso(cursoparamodificar);
-		ModelAndView vista = new ModelAndView("listadoCursos");
-		vista.addObject("listaCursos", serviceCurso.mostrarCursos());
-		vista.addObject("formUsuarioErrorMessage", "Curso Guardado Correctamente");
 		return vista;
 	}
 	
 	@GetMapping("/eliminarCurso/{idCurso}")
-
 	public String deleteCurso(@PathVariable(name="idCurso")Long idCurso, Model model) {
 		try {
 			serviceCurso.eliminarCurso(idCurso);
 		}catch(Exception error){
 			EMILIO.error("No se pudo eliminar el curso");
-			model.addAttribute("formUsuarioErrorMessage", error.getMessage());
-			return "redirect:/otroCursos";
-
+			model.addAttribute("formCursoErrorMessage", error.getMessage());
+			return "redirect:/otroCurso";
 		}
-		return "redirect:/listadoCursos";
+		return "redirect:/listadoCurso";
+	}
+	
+	@GetMapping("/editarCurso/{idCurso}")
+	//public ModelAndView ObtenerFormularioEditarUsuario(Model model, @PathVariable(name="dni")Long dni) throws Exception {
+	public ModelAndView editCurso(Model model,@PathVariable (name="idCurso") Long idCurso)throws Exception {	
+		Curso cursoEncontrado = new Curso();
+		try {
+			cursoEncontrado = serviceCurso.buscarCurso(idCurso);
+		}catch(Exception error){
+			model.addAttribute("formCursoErrorMessage", error.getMessage());
+		}
+		ModelAndView modelView = new ModelAndView("cargarCurso");
+		modelView.addObject("curso", cursoEncontrado);
+		//EMILIO.error("saliendo del metodo :AAAAAA"+ usuarioEncontrado.getDni());
+		//EMILIO.error("usuario: "+ usuarioEncontrado.getDni());
+		modelView.addObject("editMode", true);
+		return modelView;
+	}
+	
+	@PostMapping("/editarCurso")
+	public ModelAndView postEditarCurso(@ModelAttribute ("curso") Curso cursoparamodificar) {  
+		serviceCurso.modificarCurso(cursoparamodificar);
+		ModelAndView vista = new ModelAndView("listadoCurso");
+		vista.addObject("listaCursos", serviceCurso.mostrarCursos());
+		vista.addObject("formCursoErrorMessage", "Curso Guardado Correctamente");
+		return vista;
 	}
 }
