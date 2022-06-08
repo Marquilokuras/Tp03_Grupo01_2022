@@ -14,7 +14,7 @@
 		<div th:insert="/layouts/header :: header"></div>
 		<form th:object="${curso}" th:action="${editMode}? @{/modificarCurso} : @{/guardarCursos}"
 			method="post">
-		 	<input type="idden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
+		 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
 			<div class="mb-3">
 				<label for="curso" class="form-label">Curso</label> <input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
 				<label for="docente" class="form-label">Docente</label> <input type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> 
@@ -40,6 +40,7 @@
 				<label for="cupo" class="form-label">Cupo</label> <input type="Number" class="form-control" id="cupo" th:field="*{cupo}" placeholder="Ingrese cupo"> 
 				<label for="costo" class="form-label">Costo</label> <input type="Number" class="form-control" id="costo" th:field="*{costo}" placeholder="Ingrese costo"> 
 			</div>
+			
 			<label for="valoracion" class="form-label">Valoracion</label>
 			<div class="star-rating">
 			    <a href="#">★</a>
@@ -48,6 +49,7 @@
 			    <a href="#">★</a>
 			    <a href="#">★</a>
 			</div>
+			
 			<div>
 				<button type="submit" class="btn btn-primary" th:value="${editMode}? 'modificar' : 'registrar' ">Registrar</button>
 			</div>
