@@ -21,6 +21,7 @@
 				<div class="alert alert-danger" th:if="${#fields.hasErrors('idCurso')}" th:errors="*{idCurso}"></div>
 			</div>
 			
+			
 			<div class="mb-3">
 				<label for="curso" class="form-label">Curso</label> <input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
 				<label for="docente" class="form-label">Docente</label> <input type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> 
