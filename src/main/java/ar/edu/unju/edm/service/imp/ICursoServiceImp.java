@@ -21,7 +21,7 @@ public class ICursoServiceImp implements ICursoService{
 	@Override
 	public void guardarCursos(Curso cursoparaguardar) {
 		// TODO Auto-generated method stub
-		cursoparaguardar.setEstadoCurso(true);
+		cursoparaguardar.setEstado(true);
 		cursoRepository.save(cursoparaguardar);
 	}
 
@@ -32,11 +32,12 @@ public class ICursoServiceImp implements ICursoService{
 		List<Curso> auxiliar2 = new ArrayList<>();
 		auxiliar=(List<Curso>)cursoRepository.findAll();
 		for(int i=0;i<auxiliar.size();i++) {
-			if(auxiliar.get(i).getEstadoCurso()==true) {
+			if(auxiliar.get(i).getEstado()==true) {
 				auxiliar2.add(auxiliar.get(i));
 			}
 		}
 		return auxiliar2;
+	
 	}
 	
 	@Override
@@ -44,14 +45,14 @@ public class ICursoServiceImp implements ICursoService{
 		// TODO Auto-generated method stub
 		Curso auxiliar = new Curso();
 		auxiliar = buscarCurso(idCurso);
-		auxiliar.setEstadoCurso(false);
+		auxiliar.setEstado(false);
 		cursoRepository.save(auxiliar);
 	}
 	
 	@Override
 	public void modificarCurso(Curso curso) {
 		// TODO Auto-generated method stub
-		curso.setEstadoCurso(true);
+		curso.setEstado(true);
 		cursoRepository.save(curso);
 	}
 
@@ -62,4 +63,6 @@ public class ICursoServiceImp implements ICursoService{
 		cursoEncontrado=cursoRepository.findById(idCurso).orElseThrow(()->new Exception("Curso No Encontrado"));
 		return cursoEncontrado;
 	}
+
+	
 }

@@ -15,7 +15,7 @@ import ar.edu.unju.edm.until.ListaUsuario;
 @Service
 public class IUsuarioServiceImp implements IUsuarioService {
 
-	//private static final Log MARCOS = LogFactory.getLog(UsuarioController.class);
+	private static final Log MARCOS = LogFactory.getLog(UsuarioController.class);
 	
 	@Autowired
 	ListaUsuario lista;
@@ -49,6 +49,7 @@ public class IUsuarioServiceImp implements IUsuarioService {
 			}
 		}
 		return auxiliar2;
+	
 	}
 	
 	@Override

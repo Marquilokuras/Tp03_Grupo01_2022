@@ -1,5 +1,6 @@
 package ar.edu.unju.edm.model;
 
+
 import java.time.LocalDate;
 
 import javax.validation.constraints.Max;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -18,11 +20,11 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Curso {
 	@NotEmpty //vacio string 
-	private String nombreCurso;
+	@Size (min=5, max=30, message="El nombre del curso de contener entre 5 a 30 caracteres")
+	private String curso;
 	@NotEmpty //vacio string
 	private String docente;
 	@Column(name="descripcion")
-	@NotEmpty
 	private String descripcion;
 	@NotNull
 	@Min(value=0,message="El duracion debe ser mayor que 0")
@@ -35,29 +37,27 @@ public class Curso {
 	private LocalDate fechaInicio;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaFinal;
-	@NotNull
-	@Min(value=1,message="El duracion debe ser mayor que 1")
-	@Max(value=99999,message="El duracion debe ser menor que 99999")
-	private Integer cupo;
-	@NotNull
-	@Min(value=1,message="El duracion debe ser mayor que 1")
-	@Max(value=99999,message="El duracion debe ser menor que 99999")
-	private Double costo;
-	@Min(value=1,message="El valoracion debe ser mayor que 1")
-	@Max(value=5,message="El valoracion debe ser menor que 5")
-	private Integer valoracion;
-	private Boolean estadoCurso;
+	//@NotNull
+	//@Min(value=1,message="El duracion debe ser mayor que 1")
+	//@Max(value=99999,message="El duracion debe ser menor que 99999")
+	//private Long cupo;
+	//@NotNull
+	//@Min(value=1,message="El duracion debe ser mayor que 1")
+	//@Max(value=99999,message="El duracion debe ser menor que 99999")
+	//private Double costo;
+	//private Integer valoracion;
+	private Boolean estado;
 	
 	public Curso() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getnombreCurso() {
-		return nombreCurso;
+	public String getCurso() {
+		return curso;
 	}
 
-	public void setnombreCurso(String curso) {
-		this.nombreCurso = curso;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 
 	public String getDocente() {
@@ -108,11 +108,11 @@ public class Curso {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public Integer getCupo() {
+	/*public Long getCupo() {
 		return cupo;
 	}
 
-	public void setCupo(Integer cupo) {
+	public void setCupo(Long cupo) {
 		this.cupo = cupo;
 	}
 
@@ -130,13 +130,13 @@ public class Curso {
 
 	public void setValoracion(Integer valoracion) {
 		this.valoracion = valoracion;
-	}
-  
-	public Boolean getEstadoCurso() {
-		return estadoCurso;
+	}*/
+
+	public Boolean getEstado() {
+		return estado;
 	}
 
-	public void setEstadoCurso(Boolean estado) {
-		this.estadoCurso = estado;
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 }

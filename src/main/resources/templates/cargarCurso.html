@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Formulario Curso</title>
+<title>Formulario</title>
 <link th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}"
 	rel="stylesheet" type="text/css">
 <link th:href="@{/css/miEstilo.css}" rel="stylesheet" type="text/css">
@@ -12,58 +12,37 @@
 <body>
 	<div class="container">
 		<div th:insert="/layouts/header :: header"></div>
-		<form th:object="${curso}" th:action="${editMode}? @{/editarCursos} : @{/guardarCursos}" method="post">
-			
-     	 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{estadoCurso}">
-     	 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
-			
+		<form th:object="${curso1}" th:action="${editMode}? @{/modificarCurso} : @{/guardarCursos}"
+			method="post">
+		 	<input type="hidden" class="form-control" th:if="${editMode}" th:field="*{idCurso}">
 			<div class="mb-3">
-          <label for="id" class="form-label">ID del curso</label>
-          <input type="number" class="form-control"
-            id="id" th:field="*{idCurso}" th:if="${editMode==false}" placeholder="Ingrese ID para el curso">
-          <div class="alert alert-danger" th:if="${#fields.hasErrors('idCurso')}" th:errors="*{idCurso}"></div>
-        </div>
-        
-			<div class="mb-3">
-				<label for="nombreCurso" class="form-label">Nombre del curso</label> <input
-					type="text" class="form-control" id="nombreCurso" th:field="*{nombreCurso}"
-					placeholder="Ingrese curso"> <label for="docente"
-					class="form-label">Docente que lo dicta</label> <input type="text"
-					class="form-control" id="docente" th:field="*{docente}"
-					placeholder="Ingrese docente">
+				<label for="id" class="form-label">ID</label>
+				<input type="number" class="form-control" id="id" th:field="*{idCurso}" placeholder="Ingrese ID">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('idCurso')}" th:errors="*{idCurso}"></div>
 			</div>
 			
 			<div class="mb-3">
-				<label for="descripcion" class="form-label">Descripcion del Curso</label> 
-				<input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" placeholder="Realice una descricion detallada del curso">
+				<label for="curso" class="form-label">Curso</label> <input type="text" class="form-control" id="curso" th:field="*{curso}" placeholder="Ingrese curso">
+				<label for="docente" class="form-label">Docente</label> <input type="text" class="form-control" id="docente" th:field="*{docente}" placeholder="Ingrese docente"> 
+			</div>
+			<div class="mb-3">
+				<label for="descripcion" class="form-label">Descripcion</label> <input type="text" class="form-control" id="curso" th:field="*{descripcion}" placeholder="Ingrese descripcion">
+				<label for="duracion" class="form-label">Duracion</label> 
+				<input type="number" class="form-control" id="duracion" th:field="*{duracion}" placeholder="Ingrese duracion"> 
 			</div>
 			
 			<div class="mb-3">
 				<label for="fechaInicio" class="form-label">Fecha de Inicio</label>
-				<input type="date" class="form-control" id="fechaInicio" th:field="*{fechaInicio}" placeholder="Ingrese Fecha de Inicio">
+				<input type="date" class="form-control"	id="fechanacimiento" th:field="*{fechaInicio}" placeholder="Ingrese Fecha de Inicio">
+			</div>
+			<div class="mb-3">
+				<label for="fechaFinal" class="form-label">Fecha de Finalizacion</label>
+				<input type="date" class="form-control"	id="fechaFinal" th:field="*{fechaFinal}" placeholder="Ingrese Fecha de Finalizacion">
 			</div>
 			
-			<div class="mb-3">
-				<label for="fechaFinal" class="form-label">Fecha de Finalización</label>
-				<input type="date" class="form-control" id="fechaFinal"
-					th:field="*{fechaFinal}" placeholder="Ingrese Fecha de Finalización">
+			<div>
+				<button type="submit" class="btn btn-primary" th:value="${editMode}? 'modificar' : 'registrar' ">Registrar</button>
 			</div>
-			
-			<div class="mb-3">
-          <label for="cupo" class="form-label">Cupo</label>
-          <input type="number" class="form-control"
-            id="costo" th:field="*{cupo}" placeholder="Ingrese el cupo del curso">
- 
-        </div>
-			
-			<div class="mb-3">
-          <label for="costo" class="form-label">Costo/Precio</label>
-          <input type="number" class="form-control" id="costo" th:field="*{costo}" placeholder="Ingrese el precio del curso">
- 
-        </div>
-
-			<button type="submit" class="btn btn-primary"
-				th:value="${editMode}? 'Modificar' : 'Registrar' ">Registrar Curso</button>
 		</form>
 	</div>
 </body>
